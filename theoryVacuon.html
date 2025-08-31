@@ -6,104 +6,195 @@
     <title>Evaluación del Campo Fundamental Universal Hipotético "Vacuón"</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
             background-color: #f9f9f9;
-            color: #333;
+            color: var(--text-color);
             max-width: 1200px;
             margin: 0 auto;
         }
         .container {
             background-color: white;
-            padding: 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 0;
+            box-shadow: var(--shadow);
             border-radius: 8px;
+            overflow: hidden;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
+        
+        /* Header mejorado con imagen de portada */
+        .document-header {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--accent-color);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header-image {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        
+        .header-image img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .header-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(30deg, #34495e 12%, transparent 12.5%, transparent 87%, #34495e 87.5%, #34495e),
+                linear-gradient(150deg, #34495e 12%, transparent 12.5%, transparent 87%, #34495e 87.5%, #34495e),
+                linear-gradient(30deg, #34495e 12%, transparent 12.5%, transparent 87%, #34495e 87.5%, #34495e),
+                linear-gradient(150deg, #34495e 12%, transparent 12.5%, transparent 87%, #34495e 87.5%, #34495e),
+                linear-gradient(60deg, #2c3e50 25%, transparent 25.5%, transparent 75%, #2c3e50 75%, #2c3e50),
+                linear-gradient(60deg, #2c3e50 25%, transparent 25.5%, transparent 75%, #2c3e50 75%, #2c3e50);
+            background-size: 40px 70px;
+            background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin: 0 0 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .document-subtitle {
+            font-size: 1.2em;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+        
+        .author-info {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+        
+        .author-info p {
+            margin: 5px 0;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h2, h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
             padding-bottom: 10px;
         }
-        h1 {
-            text-align: center;
-            font-size: 28px;
-            margin-top: 0;
-        }
-        .author-info {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #7f8c8d;
-        }
+        
         .abstract {
             background-color: #e8f4f8;
-            padding: 20px;
-            border-left: 5px solid #3498db;
+            padding: 25px;
+            border-left: 5px solid var(--secondary-color);
             margin-bottom: 30px;
-            font-style: italic;
+            border-radius: 0 8px 8px 0;
         }
+        
         ul, ol {
             margin-left: 20px;
         }
+        
         .equation {
             text-align: center;
             margin: 20px 0;
-            padding: 10px;
+            padding: 15px;
             background-color: #f5f5f5;
-            border-radius: 5px;
+            border-radius: 8px;
             overflow-x: auto;
+            border-left: 4px solid var(--secondary-color);
         }
-        .img {
-text-align: center;
-        }
+        
         .figure {
             text-align: center;
             margin: 30px 0;
         }
+        
         .figure img {
             max-width: 100%;
             height: auto;
             border: 1px solid #ddd;
             border-radius: 4px;
             padding: 4px;
+            box-shadow: var(--shadow);
         }
+        
         .caption {
             font-style: italic;
             margin-top: 10px;
             color: #7f8c8d;
         }
+        
         .references {
             list-style-type: decimal;
             padding-left: 20px;
         }
+        
         .references li {
             margin-bottom: 10px;
         }
+        
         .code-container {
             background-color: #f5f5f5;
-            border-radius: 5px;
-            padding: 15px;
+            border-radius: 8px;
+            padding: 20px;
             margin: 20px 0;
             overflow-x: auto;
+            border-left: 4px solid var(--secondary-color);
         }
+        
         pre {
             margin: 0;
         }
+        
         .code-title {
             font-weight: bold;
             margin-bottom: 10px;
-            color: #2c3e50;
-        }
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 24px;
-            }
+            color: var(--primary-color);
         }
         
         /* Estilos para gráficas SVG */
@@ -117,252 +208,330 @@ text-align: center;
         .toc {
             background-color: #f8f9fa;
             border: 1px solid #a2a9b1;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
         }
+        
         .toc ul {
             list-style-type: none;
             padding-left: 0;
         }
+        
         .toc li {
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
         }
+        
+        .toc li:before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
         .toc a {
             text-decoration: none;
-            color: #0645ad;
+            color: var(--primary-color);
+            transition: color 0.3s;
         }
+        
         .toc a:hover {
+            color: var(--secondary-color);
             text-decoration: underline;
         }
         
         /* Estilos para la sección de descarga */
         .download-section {
             margin-top: 40px;
-            padding: 25px;
-            background-color: #f8f9fa;
-            border-left: 5px solid #2c3e50;
-            border-radius: 5px;
+            padding: 30px;
+            background: linear-gradient(to right, #f8f9fa, #e8f4f8);
+            border-left: 5px solid var(--primary-color);
+            border-radius: 8px;
+            text-align: center;
         }
+        
         .download-title {
-            color: #2c3e50;
+            color: var(--primary-color);
             margin-top: 0;
-            font-size: 1.4em;
+            font-size: 1.8em;
         }
+        
         .download-button {
-            display: inline-block;
-            background-color: #2c3e50;
+            display: inline-flex;
+            align-items: center;
+            background-color: var(--primary-color);
             color: white;
-            padding: 12px 25px;
+            padding: 15px 30px;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 50px;
             font-weight: bold;
-            margin-top: 15px;
-            transition: background-color 0.3s;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
         }
+        
         .download-button:hover {
-            background-color: #3498db;
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
+        
+        .download-button i {
+            margin-right: 10px;
+        }
+        
         .download-description {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: #555;
+            font-size: 1.1em;
+            line-height: 1.5;
         }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .document-header {
+                padding: 30px 15px;
+            }
+            
+            .header-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+        
+        /* Animaciones sutiles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .document-header {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .content section {
+            animation: fadeIn 0.8s ease-out;
+            animation-fill-mode: both;
+        }
+        
+        .content section:nth-child(1) { animation-delay: 0.2s; }
+        .content section:nth-child(2) { animation-delay: 0.4s; }
+        .content section:nth-child(3) { animation-delay: 0.6s; }
+        .content section:nth-child(4) { animation-delay: 0.8s; }
     </style>
 </head>
 <body>
     <div class="container">
-<img alt="" border="0" position="center" width="600" data-original-height="1024" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZgIs2iXtGGWXBfvllfqjlzR9nH-KoKJ1mKHwvsq6JyzRS1jlW26ny0VdcbYeJYDyqsMOsqgALU0XtOtUOkwg-z6j2kWNC5YqvOGIiFD9ic1c14oZ8vn71mSRf19EbRZMgb4yAGvtBZkld3cYvLVR6IpCnlbi12Gdx_ytwxponORfo65zTj7gilGgX2E0/s600/IMG_20250830_045152.png"/>
-        
-        <h1>Evaluación del Campo Fundamental Universal Hipotético "Vacuón"</h1>
-        
-        <div class="author-info">
-            <p><strong>Autor:</strong> Arnaldo Adrian Ozorio Olea</p>
-            <p><strong>Correo:</strong> asesor.teducativo@gmail.com</p>
-            <p><strong>Fecha:</strong> 30 de agosto de 2025</p>
-        </div>
-        
-        <div class="abstract">
-            <h2>Resumen</h2>
-            <p>Se propone un campo fundamental universal hipotético denominado Vacuón, constituyendo el sustrato base de la realidad física. Este documento evalúa su consistencia teórica con teorías establecidas, su potencial para resolver problemas abiertos en física fundamental y posibles firmas experimentales indirectas. Se discuten limitaciones, predicciones preliminares y direcciones futuras de investigación.</p>
-        </div>
-        
-        <div class="toc">
-            <h2>Tabla de Contenidos</h2>
-            <ul>
-                <li><a href="#introduccion">1. Introducción</a></li>
-                <li><a href="#marco-teorico">2. Marco Teórico</a></li>
-                <li><a href="#formalizacion-matematica">3. Formalización Matemática</a></li>
-                <li><a href="#resultados">4. Resultados Preliminares</a></li>
-                <li><a href="#viabilidad-experimental">5. Viabilidad Experimental</a></li>
-                <li><a href="#direcciones-futuras">6. Direcciones Futuras</a></li>
-                <li><a href="#implementacion">7. Implementación Computacional</a></li>
-                <li><a href="#conclusiones">8. Conclusiones</a></li>
-                <li><a href="#referencias">9. Referencias</a></li>
-                <li><a href="#descarga">10. Documento Completo</a></li>
-            </ul>
-        </div>
-        
-        <section id="introduccion">
-            <h2>1. Introducción</h2>
-            <p>La física moderna enfrenta problemas abiertos:</p>
-            <ul>
-                <li>Jerarquía de escalas de energía (electrodébil vs Planck)</li>
-                <li>Naturaleza de materia y energía oscuras (\(\sim 95\%\) del universo)</li>
-                <li>Unificación de gravedad y mecánica cuántica</li>
-                <li>Origen de constantes fundamentales</li>
-            </ul>
-            <p>Se propone un campo fundamental universal hipotético, el Vacuón, como sustrato primordial del universo. Sus propiedades incluyen:</p>
-            <ul>
-                <li>Ubicuidad en todo el espacio-tiempo</li>
-                <li>Dualidad partícula-onda</li>
-                <li>Correlaciones no-locales</li>
-                <li>Base para la emergencia de partículas y campos</li>
-            </ul>
-        </section>
-        
-        <section id="marco-teorico">
-            <h2>2. Marco Teórico</h2>
-            <h3>2.1 Teorías Establecidas</h3>
-            <ul>
-                <li>QFT: Partículas como excitaciones de campos.</li>
-                <li>Modelo Estándar: Mecanismo de Higgs.</li>
-                <li>Relatividad General: Geometría del espacio-tiempo.</li>
-                <li>LQG: Estructura discreta de espacio-tiempo.</li>
-                <li>Teoría de Cuerdas: Objetos unidimensionales fundamentales.</li>
-            </ul>
-            
-            <h3>2.2 Problemas Abiertos</h3>
-            <ul>
-                <li>Jerarquía de escalas de energía</li>
-                <li>Materia y energía oscuras</li>
-                <li>Unificación de gravedad y mecánica cuántica</li>
-                <li>Origen de constantes fundamentales</li>
-            </ul>
-        </section>
-        
-        <section id="formalizacion-matematica">
-            <h2>3. Formalización Matemática del Vacuón</h2>
-            <h3>3.1 Campo y Lagrangiano</h3>
-            <p>Campo escalar real \(\Phi_v\) con Lagrangiano:</p>
-            <div class="equation">
-                \[\mathcal{L}_v = \frac{1}{2} (\partial_\mu \Phi_v)^2 - V(\Phi_v)\]
+        <header class="document-header">
+            <div class="header-pattern"></div>
+            <div class="header-content">
+                <div class="header-image">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjZgIs2iXtGGWXBfvllfqjlzR9nH-KoKJ1mKHwvsq6JyzRS1jlW26ny0VdcbYeJYDyqsMOsqgALU0XtOtUOkwg-z6j2kWNC5YqvOGIiFD9ic1c14oZ8vn71mSRf19EbRZMgb4yAGvtBZkld3cYvLVR6IpCnlbi12Gdx_ytwxponORfo65zTj7gilGgX2E0/s600/IMG_20250830_045152.png" alt="Representación del Campo Vacuón">
+                </div>
+                <h1>Evaluación del Campo Fundamental Universal Hipotético "Vacuón"</h1>
+                <p class="document-subtitle">Un enfoque teórico para la unificación de la física fundamental</p>
+                
+                <div class="author-info">
+                    <p><strong>Autor:</strong> Arnaldo Adrian Ozorio Olea</p>
+                    <p><strong>Correo:</strong> asesor.teducativo@gmail.com</p>
+                    <p><strong>Fecha:</strong> 30 de agosto de 2025</p>
+                </div>
             </div>
-            <p>Potencial Higgs-like:</p>
-            <div class="equation">
-                \[V(\Phi_v) = \frac{\lambda_v}{4} (\Phi_v^2 - v_v^2)^2\]
-            </div>
-            <p>Con \(v_v \sim 10^{19}\) GeV (escala Planck) y \(\lambda_v\) auto-acoplamiento.</p>
-            
-            <h3>3.2 Acoplamiento con Higgs</h3>
-            <div class="equation">
-                \[\mathcal{L}_{\text{portal}} = - \kappa |H|^2 \Phi_v^2\]
+        </header>
+        
+        <div class="content">
+            <div class="abstract">
+                <h2>Resumen</h2>
+                <p>Se propone un campo fundamental universal hipotético denominado Vacuón, constituyendo el sustrato base de la realidad física. Este documento evalúa su consistencia teórica con teorías establecidas, su potencial para resolver problemas abiertos en física fundamental y posibles firmas experimentales indirectas. Se discuten limitaciones, predicciones preliminares y direcciones futuras de investigación.</p>
             </div>
             
-            <h3>3.3 Densidad de Energía del Vacío</h3>
-            <div class="equation">
-                \[\rho_\Lambda \approx f \Delta V \sim 1.26 \times 10^{-123} M_P^4\]
+            <div class="toc">
+                <h2>Tabla de Contenidos</h2>
+                <ul>
+                    <li><a href="#introduccion">1. Introducción</a></li>
+                    <li><a href="#marco-teorico">2. Marco Teórico</a></li>
+                    <li><a href="#formalizacion-matematica">3. Formalización Matemática</a></li>
+                    <li><a href="#resultados">4. Resultados Preliminares</a></li>
+                    <li><a href="#viabilidad-experimental">5. Viabilidad Experimental</a></li>
+                    <li><a href="#direcciones-futuras">6. Direcciones Futuras</a></li>
+                    <li><a href="#implementacion">7. Implementación Computacional</a></li>
+                    <li><a href="#conclusiones">8. Conclusiones</a></li>
+                    <li><a href="#referencias">9. Referencias</a></li>
+                    <li><a href="#descarga">10. Documento Completo</a></li>
+                </ul>
             </div>
             
-            <h3>3.4 Acción Euclidiana para Transiciones de Fase</h3>
-            <div class="equation">
-                \[S_4 \sim \frac{27 \pi^2 \sigma^4}{2 (\Delta V)^3}\]
-            </div>
+            <section id="introduccion">
+                <h2>1. Introducción</h2>
+                <p>La física moderna enfrenta problemas abiertos:</p>
+                <ul>
+                    <li>Jerarquía de escalas de energía (electrodébil vs Planck)</li>
+                    <li>Naturaleza de materia y energía oscuras (\(\sim 95\%\) del universo)</li>
+                    <li>Unificación de gravedad y mecánica cuántica</li>
+                    <li>Origen de constantes fundamentales</li>
+                </ul>
+                <p>Se propone un campo fundamental universal hipotético, el Vacuón, como sustrato primordial del universo. Sus propiedades incluyen:</p>
+                <ul>
+                    <li>Ubicuidad en todo el espacio-tiempo</li>
+                    <li>Dualidad partícula-onda</li>
+                    <li>Correlaciones no-locales</li>
+                    <li>Base para la emergencia de partículas y campos</li>
+                </ul>
+            </section>
             
-            <div class="figure">
-                <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ejes -->
-                    <line x1="50" y1="250" x2="350" y2="250" stroke="black" stroke-width="2"/>
-                    <line x1="50" y1="250" x2="50" y2="50" stroke="black" stroke-width="2"/>
-                    
-                    <!-- Potencial de doble pozo -->
-                    <path d="M 50,250 Q 150,50 250,250" stroke="blue" stroke-width="2" fill="none"/>
-                    
-                    <!-- Líneas auxiliares -->
-                    <line x1="150" y1="250" x2="150" y2="50" stroke="black" stroke-dasharray="5,5"/>
-                    <line x1="250" y1="250" x2="250" y2="50" stroke="black" stroke-dasharray="5,5"/>
-                    
-                    <!-- Etiquetas -->
-                    <text x="150" y="270" text-anchor="middle">\(v_v\)</text>
-                    <text x="250" y="270" text-anchor="middle">\(-v_v\)</text>
-                    <text x="350" y="270" text-anchor="middle">\(\Phi_v\)</text>
-                    <text x="30" y="50" text-anchor="middle">\(V(\Phi_v)\)</text>
-                    
-                    <!-- Estados -->
-                    <text x="100" y="100" text-anchor="middle" fill="red">Falso vacío</text>
-                    <text x="300" y="100" text-anchor="middle" fill="red">Verdadero vacío</text>
-                </svg>
-                <p class="caption">Figura 1: Potencial de doble pozo del campo Vacuón mostrando los dos estados de vacío</p>
-            </div>
-        </section>
-        
-        <section id="resultados">
-            <h2>4. Resultados Preliminares</h2>
-            <h3>4.1 Predicciones Cuantitativas</h3>
-            <ul>
-                <li>Tasa de nucleación de burbujas: \(\Gamma \sim e^{-S_4}\)</li>
-                <li>Acoplamiento Higgs-Vacuón: \(|\kappa| \sim 10^{-34}\)</li>
-                <li>Modificación de dispersión: \(E^2 = p^2 + m^2 + \alpha \frac{E^4}{M_P^2}\)</li>
-            </ul>
+            <section id="marco-teorico">
+                <h2>2. Marco Teórico</h2>
+                <h3>2.1 Teorías Establecidas</h3>
+                <ul>
+                    <li>QFT: Partículas como excitaciones de campos.</li>
+                    <li>Modelo Estándar: Mecanismo de Higgs.</li>
+                    <li>Relatividad General: Geometría del espacio-tiempo.</li>
+                    <li>LQG: Estructura discreta de espacio-tiempo.</li>
+                    <li>Teoría de Cuerdas: Objetos unidimensionales fundamentales.</li>
+                </ul>
+                
+                <h3>2.2 Problemas Abiertos</h3>
+                <ul>
+                    <li>Jerarquía de escalas de energía</li>
+                    <li>Materia y energía oscuras</li>
+                    <li>Unificación de gravedad y mecánica cuántica</li>
+                    <li>Origen de constantes fundamentales</li>
+                </ul>
+            </section>
             
-            <div class="figure">
-                <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ejes -->
-                    <line x1="50" y1="250" x2="350" y2="250" stroke="black" stroke-width="2"/>
-                    <line x1="50" y1="250" x2="50" y2="50" stroke="black" stroke-width="2"/>
-                    
-                    <!-- Relación estándar -->
-                    <path d="M 50,250 L 350,50" stroke="blue" stroke-width="2" fill="none"/>
-                    
-                    <!-- Relación modificada -->
-                    <path d="M 50,250 Q 200,200 350,100" stroke="red" stroke-width="2" fill="none"/>
-                    
-                    <!-- Etiquetas -->
-                    <text x="350" y="270" text-anchor="middle">\(p\)</text>
-                    <text x="30" y="50" text-anchor="middle">\(E\)</text>
-                    <text x="200" y="100" text-anchor="middle" fill="blue">\(E^2 = p^2 + m^2\)</text>
-                    <text x="250" y="150" text-anchor="middle" fill="red">\(E^2 = p^2 + m^2 + \alpha\frac{E^4}{M_P^2}\)</text>
-                </svg>
-                <p class="caption">Figura 2: Modificación de la relación de dispersión a altas energías</p>
-            </div>
+            <section id="formalizacion-matematica">
+                <h2>3. Formalización Matemática del Vacuón</h2>
+                <h3>3.1 Campo y Lagrangiano</h3>
+                <p>Campo escalar real \(\Phi_v\) con Lagrangiano:</p>
+                <div class="equation">
+                    \[\mathcal{L}_v = \frac{1}{2} (\partial_\mu \Phi_v)^2 - V(\Phi_v)\]
+                </div>
+                <p>Potencial Higgs-like:</p>
+                <div class="equation">
+                    \[V(\Phi_v) = \frac{\lambda_v}{4} (\Phi_v^2 - v_v^2)^2\]
+                </div>
+                <p>Con \(v_v \sim 10^{19}\) GeV (escala Planck) y \(\lambda_v\) auto-acoplamiento.</p>
+                
+                <h3>3.2 Acoplamiento con Higgs</h3>
+                <div class="equation">
+                    \[\mathcal{L}_{\text{portal}} = - \kappa |H|^2 \Phi_v^2\]
+                </div>
+                
+                <h3>3.3 Densidad de Energía del Vacío</h3>
+                <div class="equation">
+                    \[\rho_\Lambda \approx f \Delta V \sim 1.26 \times 10^{-123} M_P^4\]
+                </div>
+                
+                <h3>3.4 Acción Euclidiana para Transiciones de Fase</h3>
+                <div class="equation">
+                    \[S_4 \sim \frac{27 \pi^2 \sigma^4}{2 (\Delta V)^3}\]
+                </div>
+                
+                <div class="figure">
+                    <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Ejes -->
+                        <line x1="50" y1="250" x2="350" y2="250" stroke="black" stroke-width="2"/>
+                        <line x1="50" y1="250" x2="50" y2="50" stroke="black" stroke-width="2"/>
+                        
+                        <!-- Potencial de doble pozo -->
+                        <path d="M 50,250 Q 150,50 250,250" stroke="blue" stroke-width="2" fill="none"/>
+                        
+                        <!-- Líneas auxiliares -->
+                        <line x1="150" y1="250" x2="150" y2="50" stroke="black" stroke-dasharray="5,5"/>
+                        <line x1="250" y1="250" x2="250" y2="50" stroke="black" stroke-dasharray="5,5"/>
+                        
+                        <!-- Etiquetas -->
+                        <text x="150" y="270" text-anchor="middle">\(v_v\)</text>
+                        <text x="250" y="270" text-anchor="middle">\(-v_v\)</text>
+                        <text x="350" y="270" text-anchor="middle">\(\Phi_v\)</text>
+                        <text x="30" y="50" text-anchor="middle">\(V(\Phi_v)\)</text>
+                        
+                        <!-- Estados -->
+                        <text x="100" y="100" text-anchor="middle" fill="red">Falso vacío</text>
+                        <text x="300" y="100" text-anchor="middle" fill="red">Verdadero vacío</text>
+                    </svg>
+                    <p class="caption">Figura 1: Potencial de doble pozo del campo Vacuón mostrando los dos estados de vacío</p>
+                </div>
+            </section>
             
-            <h3>4.2 Consistencia Teórica</h3>
-            <ul>
-                <li>Compatible con LQG y teoría de cuerdas en términos conceptuales</li>
-                <li>Explicación conceptual de jerarquía de energías mediante supresión exponencial</li>
-                <li>Potencial para explicar energía oscura mediante fracción volumétrica extremadamente pequeña</li>
-            </ul>
-        </section>
-        
-        <section id="viabilidad-experimental">
-            <h2>5. Viabilidad Experimental</h2>
-            <p>Firmas indirectas:</p>
-            <ul>
-                <li>Violación de invariancia Lorentz: límites de relojes atómicos y observatorios de rayos gamma</li>
-                <li>Anisotropías en CMB: búsqueda de correlaciones no gaussianas</li>
-                <li>Colisionadores: ausencia de desviaciones en LHC hasta \(\sim 10\) TeV</li>
-            </ul>
-        </section>
-        
-        <section id="direcciones-futuras">
-            <h2>6. Direcciones Futuras</h2>
-            <h3>6.1 Teóricas</h3>
-            <ul>
-                <li>Formulación matemática completa del Vacuón</li>
-                <li>Derivación cuantitativa del Modelo Estándar desde este campo</li>
-            </ul>
+            <section id="resultados">
+                <h2>4. Resultados Preliminares</h2>
+                <h3>4.1 Predicciones Cuantitativas</h3>
+                <ul>
+                    <li>Tasa de nucleación de burbujas: \(\Gamma \sim e^{-S_4}\)</li>
+                    <li>Acoplamiento Higgs-Vacuón: \(|\kappa| \sim 10^{-34}\)</li>
+                    <li>Modificación de dispersión: \(E^2 = p^2 + m^2 + \alpha \frac{E^4}{M_P^2}\)</li>
+                </ul>
+                
+                <div class="figure">
+                    <svg width="400" height="300" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Ejes -->
+                        <line x1="50" y1="250" x2="350" y2="250" stroke="black" stroke-width="2"/>
+                        <line x1="50" y1="250" x2="50" y2="50" stroke="black" stroke-width="2"/>
+                        
+                        <!-- Relación estándar -->
+                        <path d="M 50,250 L 350,50" stroke="blue" stroke-width="2" fill="none"/>
+                        
+                        <!-- Relación modificada -->
+                        <path d="M 50,250 Q 200,200 350,100" stroke="red" stroke-width="2" fill="none"/>
+                        
+                        <!-- Etiquetas -->
+                        <text x="350" y="270" text-anchor="middle">\(p\)</text>
+                        <text x="30" y="50" text-anchor="middle">\(E\)</text>
+                        <text x="200" y="100" text-anchor="middle" fill="blue">\(E^2 = p^2 + m^2\)</text>
+                        <text x="250" y="150" text-anchor="middle" fill="red">\(E^2 = p^2 + m^2 + \alpha\frac{E^4}{M_P^2}\)</text>
+                    </svg>
+                    <p class="caption">Figura 2: Modificación de la relación de dispersión a altas energías</p>
+                </div>
+                
+                <h3>4.2 Consistencia Teórica</h3>
+                <ul>
+                    <li>Compatible con LQG y teoría de cuerdas en términos conceptuales</li>
+                    <li>Explicación conceptual de jerarquía de energías mediante supresión exponencial</li>
+                    <li>Potencial para explicar energía oscura mediante fracción volumétrica extremadamente pequeña</li>
+                </ul>
+            </section>
             
-            <h3>6.2 Experimentales</h3>
-            <ul>
-                <li>Medición de violaciones de Lorentz a alta precisión</li>
-                <li>Búsqueda de desviaciones de correlaciones en CMB</li>
-            </ul>
-        </section>
-        
-        <section id="implementacion">
-            <h2>7. Implementación Computacional</h2>
-            <div class="code-container">
-                <div class="code-title">Simulación numérica de fluctuaciones del vacío cuántico</div>
-                <pre><code>
+            <section id="viabilidad-experimental">
+                <h2>5. Viabilidad Experimental</h2>
+                <p>Firmas indirectas:</p>
+                <ul>
+                    <li>Violación de invariancia Lorentz: límites de relojes atómicos y observatorios de rayos gamma</li>
+                    <li>Anisotropías en CMB: búsqueda de correlaciones no gaussianas</li>
+                    <li>Colisionadores: ausencia de desviaciones en LHC hasta \(\sim 10\) TeV</li>
+                </ul>
+            </section>
+            
+            <section id="direcciones-futuras">
+                <h2>6. Direcciones Futuras</h2>
+                <h3>6.1 Teóricas</h3>
+                <ul>
+                    <li>Formulación matemática completa del Vacuón</li>
+                    <li>Derivación cuantitativa del Modelo Estándar desde este campo</li>
+                </ul>
+                
+                <h3>6.2 Experimentales</h3>
+                <ul>
+                    <li>Medición de violaciones de Lorentz a alta precisión</li>
+                    <li>Búsqueda de desviaciones de correlaciones en CMB</li>
+                </ul>
+            </section>
+            
+            <section id="implementacion">
+                <h2>7. Implementación Computacional</h2>
+                <div class="code-container">
+                    <div class="code-title">Simulación numérica de fluctuaciones del vacío cuántico</div>
+                    <pre><code>
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
@@ -400,37 +569,67 @@ plt.title('Evolución temporal del campo Vacuón')
 plt.legend()
 plt.grid(True)
 plt.show()
-                </code></pre>
-            </div>
-        </section>
-        
-        <section id="conclusiones">
-            <h2>8. Conclusiones</h2>
-            <p>El Vacuón es un campo fundamental universal hipotético:</p>
-            <ul>
-                <li>Conceptualmente interesante y consistente con teorías modernas</li>
-                <li>Altamente especulativo y actualmente inaccesible experimentalmente</li>
-                <li>Útil como marco conceptual para inspirar investigación en unificación, gravedad cuántica y emergencia del espacio-tiempo</li>
-            </ul>
-        </section>
-        
-        <section id="referencias">
-            <h2>9. Referencias</h2>
-            <ol class="references">
-                <li>Planck Collaboration (2018). "Planck 2018 results"</li>
-                <li>Coleman, S. (1977). "Fate of the false vacuum"</li>
-                <li>Verde, L. et al. (2019). "Tensions between early and late universe cosmology"</li>
-                <li>Addazi, A. et al. (2022). "Quantum gravity phenomenology at the dawn of the multi-messenger era"</li>
-            </ol>
-        </section>
-        
-        <section id="descarga">
-            <div class="download-section">
-                <h2 class="download-title">Documento Teórico Completo</h2>
-                <p class="download-description">Para una exploración más detallada de la Teoría del Campo Fundamental Hipotético Vacuón, puede descargar el documento completo en formato PDF que incluye desarrollos matemáticos extensos, derivaciones completas y análisis adicionales no incluidos en este resumen ejecutivo.</p>
-                <a href="https://arnaldozpy.github.io/Vacuon/Teoría_del_Campo_Fundamental_Hipotético_Vacuon (3).pdf" class="download-button" target="_blank">Descargar PDF Completo</a>
-            </div>
-        </section>
+                    </code></pre>
+                </div>
+            </section>
+            
+            <section id="conclusiones">
+                <h2>8. Conclusiones</h2>
+                <p>El Vacuón es un campo fundamental universal hipotético:</p>
+                <ul>
+                    <li>Conceptualmente interesante y consistente con teorías modernas</li>
+                    <li>Altamente especulativo y actualmente inaccesible experimentalmente</li>
+                    <li>Útil como marco conceptual para inspirar investigación en unificación, gravedad cuántica y emergencia del espacio-tiempo</li>
+                </ul>
+            </section>
+            
+            <section id="referencias">
+                <h2>9. Referencias</h2>
+                <ol class="references">
+                    <li>Planck Collaboration (2018). "Planck 2018 results"</li>
+                    <li>Coleman, S. (1977). "Fate of the false vacuum"</li>
+                    <li>Verde, L. et al. (2019). "Tensions between early and late universe cosmology"</li>
+                    <li>Addazi, A. et al. (2022). "Quantum gravity phenomenology at the dawn of the multi-messenger era"</li>
+                </ol>
+            </section>
+            
+            <section id="descarga">
+                <div class="download-section">
+                    <h2 class="download-title">Documento Teórico Completo</h2>
+                    <p class="download-description">Para una exploración más detallada de la Teoría del Campo Fundamental Hipotético Vacuón, puede descargar el documento completo en formato PDF que incluye desarrollos matemáticos extensos, derivaciones completas y análisis adicionales no incluidos en este resumen ejecutivo.</p>
+                    <a href="https://arnaldozpy.github.io/Vacuon/Teoría_del_Campo_Fundamental_Hipotético_Vacuon (3).pdf" class="download-button" target="_blank">
+                        <i class="fas fa-download"></i> Descargar PDF Completo
+                    </a>
+                </div>
+            </section>
+        </div>
     </div>
+
+    <script>
+        // Pequeño script para resaltar la sección actual en el TOC al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.content section');
+            const navLinks = document.querySelectorAll('.toc a');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
