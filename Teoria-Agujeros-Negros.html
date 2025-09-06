@@ -4,7 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teoría del Campo Vacuón - Resumen Ejecutivo</title>
+    
+
+<script>
+
+    window.MathJax = {
+
+        tex: {
+
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+
+            processEscapes: true
+
+        },
+
+        loader: { load: ['[tex]/ams'] }
+
+    };
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    
+ 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <style>
         :root {
             --primary: #2c3e50;
@@ -202,7 +228,7 @@
                 
                 <div class="highlight">
                     <p>El campo Vacuón se caracteriza por un potencial de doble pozo: 
-                    \[ V(\Phi_v) = \frac{\lambda_v}{4}(\Phi_v^2 - v_v^2)^2 + V_0 \]
+                    $$ V(\Phi_v) = \frac{\lambda_v}{4}(\Phi_v^2 - v_v^2)^2 + V_0 $$
                     donde \( v_v \sim M_{\text{Pl}} \approx 1.22 \times 10^{19} \text{ GeV} \) es la escala de ruptura de simetría.</p>
                 </div>
             </div>
@@ -211,7 +237,7 @@
                 <h2>Mecanismo de Estabilización</h2>
                 <p>Los agujeros negros, a través de su intenso campo gravitatorio, estabilizan el campo Vacuón cerca de sus horizontes de eventos. La condición de regularidad en el horizonte (\( r = r_s \)) impone una restricción fundamental:</p>
                 
-                <p>\[ V'(\Phi_v(r_s)) + 2\kappa(E(r_s)) |H|^2 \Phi_v(r_s) = 0 \]</p>
+                <p>$$ V'(\Phi_v(r_s)) + 2\kappa(E(r_s)) |H|^2 \Phi_v(r_s) = 0 $$</p>
                 
                 <p>Esta condición sugiere que el campo Vacuón se ve forzado hacia un mínimo estable cerca del agujero negro, suprimiendo fluctuaciones cuánticas y manteniendo la estabilidad del vacío.</p>
                 
@@ -231,12 +257,12 @@
                 
                 <h3>Ondas Gravitacionales de Baja Frecuencia</h3>
                 <p>Un fondo estocástico con densidad espectral característica:
-                \[ \Omega_{\text{GW}}(f) = A \exp\left[-\frac{(\ln(f/f_0))^2}{2\sigma^2}\right] \]
+                $$ \Omega_{\text{GW}}(f) = A \exp\left[-\frac{(\ln(f/f_0))^2}{2\sigma^2}\right] $$
                 donde \( f_0 = 1.52 \times 10^{15} \times m_v \) Hz representa la frecuencia característica.</p>
                 
                 <h3>Modificaciones en la Sombra de Agujeros Negros</h3>
                 <p>Alteraciones en el tamaño de la sombra del agujero negro:
-                \[ \frac{\delta r_s}{r_s} \sim \kappa \frac{v_v^2}{M_{\text{Pl}}^2} \sim \kappa \]</p>
+                $$ \frac{\delta r_s}{r_s} \sim \kappa \frac{v_v^2}{M_{\text{Pl}}^2} \sim \kappa $$</p>
                 
                 <div class="graphics">
                     <div class="graphic-container">
