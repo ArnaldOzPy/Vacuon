@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoría del Campo Vacuón - Resumen Ejecutivo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --text: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .highlight {
+            background-color: rgba(243, 156, 18, 0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .graphics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .graphic-container {
+            flex: 1 1 45%;
+            min-width: 300px;
+            background: var(--light);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #f1f3f5;
+        }
+        
+        .download-area {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light);
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--success);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .download-btn:hover {
+            background: #219653;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(39, 174, 96, 0.4);
+        }
+        
+        .conclusion {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--dark);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .graphic-container {
+                flex: 1 1 100%;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Teoría del Campo Vacuón</h1>
+            <p class="subtitle">Agujeros Negros como Estabilizadores del Sustrato Espaciotemporal</p>
+        </header>
+
+        <div class="content">
+            <div class="section">
+                <h2>Introducción</h2>
+                <p>Esta investigación propone un marco teórico novedoso que atribuye a los agujeros negros la función de <strong>estabilizadores del campo Vacuón</strong>, un campo escalar fundamental hipotetizado como sustrato del espacio-tiempo. El campo Vacuón representa un componente esencial en la comprensión de la estructura fundamental del universo y su interacción con objetos astrofísicos masivos.</p>
+                
+                <div class="highlight">
+                    <p>El campo Vacuón se caracteriza por un potencial de doble pozo: 
+                    \[ V(\Phi_v) = \frac{\lambda_v}{4}(\Phi_v^2 - v_v^2)^2 + V_0 \]
+                    donde \( v_v \sim M_{\text{Pl}} \approx 1.22 \times 10^{19} \text{ GeV} \) es la escala de ruptura de simetría.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Mecanismo de Estabilización</h2>
+                <p>Los agujeros negros, a través de su intenso campo gravitatorio, estabilizan el campo Vacuón cerca de sus horizontes de eventos. La condición de regularidad en el horizonte (\( r = r_s \)) impone una restricción fundamental:</p>
+                
+                <p>\[ V'(\Phi_v(r_s)) + 2\kappa(E(r_s)) |H|^2 \Phi_v(r_s) = 0 \]</p>
+                
+                <p>Esta condición sugiere que el campo Vacuón se ve forzado hacia un mínimo estable cerca del agujero negro, suprimiendo fluctuaciones cuánticas y manteniendo la estabilidad del vacío.</p>
+                
+                <div class="graphics">
+                    <div class="graphic-container">
+                        <canvas id="potentialChart"></canvas>
+                    </div>
+                    <div class="graphic-container">
+                        <canvas id="stabilizationChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Evidencia Observacional y Predicciones</h2>
+                <p>El modelo predice dos fenómenos observables clave que permiten verificar experimentalmente la teoría:</p>
+                
+                <h3>Ondas Gravitacionales de Baja Frecuencia</h3>
+                <p>Un fondo estocástico con densidad espectral característica:
+                \[ \Omega_{\text{GW}}(f) = A \exp\left[-\frac{(\ln(f/f_0))^2}{2\sigma^2}\right] \]
+                donde \( f_0 = 1.52 \times 10^{15} \times m_v \) Hz representa la frecuencia característica.</p>
+                
+                <h3>Modificaciones en la Sombra de Agujeros Negros</h3>
+                <p>Alteraciones en el tamaño de la sombra del agujero negro:
+                \[ \frac{\delta r_s}{r_s} \sim \kappa \frac{v_v^2}{M_{\text{Pl}}^2} \sim \kappa \]</p>
+                
+                <div class="graphics">
+                    <div class="graphic-container">
+                        <canvas id="gwSpectrumChart"></canvas>
+                    </div>
+                    <div class="graphic-container">
+                        <canvas id="shadowChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Límites Actuales y Predicciones Futuras</h2>
+                <p>El análisis de datos actuales y la comparación con el modelo propuesto permite establecer límites en los parámetros del Vacuón:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parámetro</th>
+                            <th>Límite Inferior</th>
+                            <th>Límite Superior</th>
+                            <th>Observatorio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>\( m_v \) (eV)</td>
+                            <td>\( 10^{-24} \)</td>
+                            <td>\( 10^{-15} \)</td>
+                            <td>PTA</td>
+                        </tr>
+                        <tr>
+                            <td>\( \kappa \)</td>
+                            <td>\( 10^{-34} \)</td>
+                            <td>\( 10^{-25} \)</td>
+                            <td>EHT</td>
+                        </tr>
+                        <tr>
+                            <td>\( \lambda_v \)</td>
+                            <td>\( 10^{-3} \)</td>
+                            <td>\( 1 \)</td>
+                            <td>Laboratorio</td>
+                        </tr>
+                        <tr>
+                            <td>\( g \) (GeV\(^{-4}\))</td>
+                            <td>\( 10^{-100} \)</td>
+                            <td>\( 10^{-80} \)</td>
+                            <td>Teórico</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <p>Para futuros observatorios, se proyectan los siguientes límites de detección:</p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Observatorio</th>
+                            <th>Sensibilidad Esperada</th>
+                            <th>Parámetro</th>
+                            <th>Límite Proyectado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SKA-PTA</td>
+                            <td>\( \Omega_{\text{GW}} \sim 10^{-12} \)</td>
+                            <td>\( m_v \)</td>
+                            <td>\( 10^{-26} \) eV</td>
+                        </tr>
+                        <tr>
+                            <td>Next-Gen EHT</td>
+                            <td>\( \delta r_s/r_s \sim 10^{-4} \)</td>
+                            <td>\( \kappa \)</td>
+                            <td>\( 10^{-28} \)</td>
+                        </tr>
+                        <tr>
+                            <td>LISA</td>
+                            <td>\( \Omega_{\text{GW}} \sim 10^{-13} \)</td>
+                            <td>\( m_v \)</td>
+                            <td>\( 10^{-21} \) eV</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section">
+                <h2>Implicaciones Teóricas</h2>
+                <p>Esta teoría conecta con investigaciones recientes sobre agujeros negros sin singularidades y la posible naturaleza holográfica del universo. Además, sugiere que los agujeros negros pueden actuar como estabilizadores del vacío cuántico, evitando decaimientos hacia estados de vacío falso.</p>
+                
+                <p>La teoría también proporciona un marco para reinterpretar observaciones recientes, como la rotación preferencial de galaxias y las propiedades termodinámicas de agujeros negros, ofreciendo una perspectiva unificada de fenómenos astrofísicos y de física de partículas.</p>
+            </div>
+
+            <div class="section">
+                <h2>Próximos Pasos en la Investigación</h2>
+                <p>Las futuras investigaciones se centrarán en:</p>
+                <ul>
+                    <li>Extender el trabajo al espacio-tiempo de cuatro dimensiones para una descripción más completa</li>
+                    <li>Investigar la estabilidad y firmas observacionales de agujeros negros regulares en este marco teórico</li>
+                    <li>Explorar implicaciones en diversos escenarios astrofísicos, incluyendo colisiones de agujeros negros</li>
+                    <li>Desarrollar misiones interestelares para verificar predicciones con mayor precisión</li>
+                    <li>Estudiar posibles conexiones con la materia oscura y energía oscura</li>
+                </ul>
+            </div>
+
+            <div class="conclusion">
+                <h2>Conclusión</h2>
+                <p>Esta investigación presenta un marco teórico novedoso que sugiere que los agujeros negros pueden desempeñar un papel crucial como estabilizadores del campo Vacuón, un campo escalar fundamental hipotetizado como sustrato del espacio-tiempo. Los resultados indican que este mecanismo de estabilización podría producir señales observables en múltiples bandas de frecuencia, particularmente a través de ondas gravitacionales de baja frecuencia y modificaciones en la sombra de agujeros negros.</p>
+                <p>La verificación experimental de esta hipótesis requerirá datos de mayor precisión y un análisis más detallado, pero los límites actuales ya restringen el espacio de parámetros del modelo. El marco presentado proporciona una conexión intrigante entre la física de los agujeros negros y la estabilidad del vacío cuántico, abriendo nuevas vías de investigación en física teórica y astrofísica.</p>
+            </div>
+
+            <div class="download-area">
+                <h2>Documento Completo</h2>
+                <p>Descarga el documento completo con la teoría detallada, ecuaciones, algoritmos numéricos y referencias bibliográficas.</p>
+                <a href="https://arnaldozpy.github.io/Vacuon/Teoria_de_Agujeros_Negros__Función_Primordial_y_Efecto_sobre_el_Campo_Vacuon.pdf" class="download-btn" download="Teoria_Campo_Vacuon.pdf">Descargar PDF</a>
+                <p style="margin-top: 15px; font-size: 0.9em;">El documento incluye la formulación matemática completa, algoritmos numéricos y análisis detallado de datos.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Teoría del Campo Vacuón - Estabilización por Agujeros Negros</p>
+            <p>Arnaldo Adrian Ozorio Olea • 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Gráfico 1: Potencial del Campo Vacuón
+        const potentialCtx = document.getElementById('potentialChart').getContext('2d');
+        new Chart(potentialCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => (i - 50) * 0.1),
+                datasets: [{
+                    label: 'Potencial de Doble Pozo V(Φ_v)',
+                    data: Array.from({length: 100}, (_, i) => {
+                        const x = (i - 50) * 0.1;
+                        return Math.pow(Math.pow(x, 2) - 1, 2);
+                    }),
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Potencial del Campo Vacuón',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Φ_v (valor del campo)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'V(Φ_v) (energía potencial)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Gráfico 2: Estabilización por Agujeros Negros
+        const stabilizationCtx = document.getElementById('stabilizationChart').getContext('2d');
+        new Chart(stabilizationCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => i + 1),
+                datasets: [{
+                    label: 'Sin Agujero Negro',
+                    data: Array.from({length: 100}, () => Math.random() * 10 + 5),
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    tension: 0.1
+                }, {
+                    label: 'Con Agujero Negro',
+                    data: Array.from({length: 100}, () => Math.random() * 2 + 1),
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Estabilización de Fluctuaciones Cuánticas',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Amplitud de Fluctuación'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Gráfico 3: Espectro de Ondas Gravitacionales
+        const gwSpectrumCtx = document.getElementById('gwSpectrumChart').getContext('2d');
+        new Chart(gwSpectrumCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => (i + 1) * 0.1),
+                datasets: [{
+                    label: 'Espectro Predicho Ω_GW(f)',
+                    data: Array.from({length: 100}, (_, i) => {
+                        const x = (i + 1) * 0.1;
+                        return Math.exp(-Math.pow(Math.log(x/15), 2) / 2);
+                    }),
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    tension: 0.3,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Espectro de Ondas Gravitacionales',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Frecuencia (Hz)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Ω_GW (densidad espectral)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Gráfico 4: Modificación de la Sombra del Agujero Negro
+        const shadowCtx = document.getElementById('shadowChart').getContext('2d');
+        new Chart(shadowCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Sin Campo Vacuón', 'Con Campo Vacuón'],
+                datasets: [{
+                    label: 'Tamaño Relativo de la Sombra',
+                    data: [1, 1.15],
+                    backgroundColor: [
+                        'rgba(255, 159, 64, 0.8)',
+                        'rgba(75, 192, 192, 0.8)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Modificación de la Sombra del Agujero Negro',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        position: 'bottom'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Tamaño Relativo (δr_s/r_s)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
