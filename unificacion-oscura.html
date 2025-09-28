@@ -103,7 +103,7 @@
             text-align: center;
         }
 
-        .graphic img {
+        .graphic img, .graphic svg {
             max-width: 100%;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -202,6 +202,23 @@
             border-radius: 10px;
             margin: 20px 0;
         }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
 
         @media (max-width: 768px) {
             .title {
@@ -218,7 +235,7 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-<img alt="" border="0" height="400" data-original-height="1536" data-original-width="1024" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMG5wPPR61WFkJG1K_Gmy0ebgvILAGz_36b07Xm_xYwzSGCYxhiGN-BsKbO-4B2gdoKJ_Fm2Vc4KwUZGjqt6SetRBvouA73FJBFDAK5l59XHXLUKOhLJo-GPJC4leVvKnsVnlMuXoepFS74t6NFkYFxCiC0uNabd6InYlN8lLjn-2waHczLSbfQNe2-qQ/s400/IMG_20250928_171607.png"/>
+            <img alt="Teoría del Campo Vacuón" border="0" height="400" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiMG5wPPR61WFkJG1K_Gmy0ebgvILAGz_36b07Xm_xYwzSGCYxhiGN-BsKbO-4B2gdoKJ_Fm2Vc4KwUZGjqt6SetRBvouA73FJBFDAK5l59XHXLUKOhLJo-GPJC4leVvKnsVnlMuXoepFS74t6NFkYFxCiC0uNabd6InYlN8lLjn-2waHczLSbfQNe2-qQ/s400/IMG_20250928_171607.png"/>
             
             <h1 class="title">Masa Emergente: ¿Unificación Efectiva de Materia y Energía Oscura?</h1>
             <h2 class="subtitle">Teoría del Campo Vacuón V</h2>
@@ -274,11 +291,30 @@
 
             <div class="graphics-container">
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/3498db/ffffff?text=Diagrama+Vacuón-Dirac" alt="Diagrama de interacción Vacuón-Dirac">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#3498db" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="125" text-anchor="middle" fill="#3498db" font-family="Arial" font-size="18">Diagrama Vacuón-Dirac</text>
+                        <circle cx="100" cy="125" r="30" fill="#3498db" fill-opacity="0.3" stroke="#3498db" stroke-width="2"/>
+                        <text x="100" y="130" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="14">Vacuón</text>
+                        <circle cx="300" cy="125" r="30" fill="#e74c3c" fill-opacity="0.3" stroke="#e74c3c" stroke-width="2"/>
+                        <text x="300" y="130" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="14">Electrón</text>
+                        <line x1="130" y1="125" x2="270" y2="125" stroke="#2c3e50" stroke-width="2" stroke-dasharray="5,5"/>
+                        <text x="200" y="115" text-anchor="middle" fill="#7f8c8d" font-family="Arial" font-size="12">Interacción</text>
+                    </svg>
                     <p class="graphic-caption">Diagrama de interacción entre el campo Vacuón y el campo de Dirac</p>
                 </div>
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/2ecc71/ffffff?text=Potencial+Efectivo" alt="Potencial efectivo del Vacuón">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#2ecc71" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#2ecc71" font-family="Arial" font-size="18">Potencial Efectivo del Vacuón</text>
+                        <path d="M50,200 Q200,50 350,200" stroke="#2ecc71" stroke-width="3" fill="none"/>
+                        <circle cx="200" cy="50" r="5" fill="#e74c3c"/>
+                        <text x="210" y="45" fill="#e74c3c" font-family="Arial" font-size="12">Mínimo estable</text>
+                        <line x1="50" y1="200" x2="350" y2="200" stroke="#7f8c8d" stroke-width="1"/>
+                        <line x1="200" y1="50" x2="200" y2="220" stroke="#7f8c8d" stroke-width="1"/>
+                        <text x="380" y="215" text-anchor="end" fill="#7f8c8d" font-family="Arial" font-size="10">Φ</text>
+                        <text x="30" y="60" text-anchor="start" fill="#7f8c8d" font-family="Arial" font-size="10">V(Φ)</text>
+                    </svg>
                     <p class="graphic-caption">Potencial efectivo del campo Vacuón mostrando mínimos estables</p>
                 </div>
             </div>
@@ -296,11 +332,23 @@
             
             <div class="graphics-container">
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/e74c3c/ffffff?text=Contribución+Yukawa" alt="Contribución Yukawa">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#e74c3c" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#e74c3c" font-family="Arial" font-size="18">Contribución Yukawa</text>
+                        <rect x="100" y="100" width="200" height="80" fill="#e74c3c" fill-opacity="0.3" stroke="#e74c3c" stroke-width="2" rx="5"/>
+                        <text x="200" y="145" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="14">mₑ⁽ʸ⁾ = gₑvᵥ</text>
+                        <text x="200" y="165" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="14">≈ 0.511 MeV</text>
+                    </svg>
                     <p class="graphic-caption">Contribución Yukawa: m<sub>e</sub><sup>(Y)</sup> = g<sub>e</sub>v<sub>v</sub> ≈ 0.511 MeV</p>
                 </div>
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/9b59b6/ffffff?text=Cuatro+Fermiones" alt="Contribución cuatro fermiones">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#9b59b6" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#9b59b6" font-family="Arial" font-size="18">Contribución Cuatro Fermiones</text>
+                        <circle cx="200" cy="125" r="60" fill="#9b59b6" fill-opacity="0.3" stroke="#9b59b6" stroke-width="2"/>
+                        <text x="200" y="125" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="14">mₑ⁽⁴ᶠ⁾</text>
+                        <text x="200" y="145" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="12">∼ 10⁻²² Mₚₗ</text>
+                    </svg>
                     <p class="graphic-caption">Contribución cuatro fermiones: m<sub>e</sub><sup>(4F)</sup> ∼ 10⁻²² M<sub>Pl</sub></p>
                 </div>
             </div>
@@ -316,27 +364,42 @@
             
             <div class="simulation">
                 <h3 style="color: white;">Evolución del Campo Vacuón</h3>
-                <div class="simulation-canvas" id="vacuonEvolution">
-                    <!-- Aquí iría el canvas para la simulación -->
-                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #7f8c8d;">
-                        [Simulación: Evolución temporal del campo Vacuón]
-                    </div>
-                </div>
+                <canvas id="vacuonEvolution" class="simulation-canvas"></canvas>
                 <div class="simulation-controls">
-                    <button onclick="startSimulation()">Iniciar Simulación</button>
-                    <button onclick="pauseSimulation()">Pausar</button>
-                    <button onclick="resetSimulation()">Reiniciar</button>
+                    <button id="startSimulation">Iniciar Simulación</button>
+                    <button id="pauseSimulation">Pausar</button>
+                    <button id="resetSimulation">Reiniciar</button>
                 </div>
                 <p>Parámetros: ξ = 1.028, λ<sub>v</sub> = 1.18×10⁻¹²⁰, v<sub>v</sub> = 1.02×10¹⁹ GeV</p>
             </div>
 
             <div class="graphics-container">
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/34495e/ffffff?text=Ecuación+de+Estado+w(z)" alt="Ecuación de estado w(z)">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#34495e" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#34495e" font-family="Arial" font-size="18">Ecuación de Estado w(z)</text>
+                        <path d="M50,200 L100,180 L150,160 L200,150 L250,145 L300,140 L350,138" stroke="#34495e" stroke-width="3" fill="none"/>
+                        <line x1="50" y1="200" x2="350" y2="200" stroke="#7f8c8d" stroke-width="1"/>
+                        <line x1="50" y1="50" x2="50" y2="200" stroke="#7f8c8d" stroke-width="1"/>
+                        <text x="30" y="125" text-anchor="start" fill="#7f8c8d" font-family="Arial" font-size="10" transform="rotate(-90 30,125)">w(z)</text>
+                        <text x="200" y="220" text-anchor="middle" fill="#7f8c8d" font-family="Arial" font-size="10">z (redshift)</text>
+                    </svg>
                     <p class="graphic-caption">Evolución de la ecuación de estado w(z) del Vacuón</p>
                 </div>
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/16a085/ffffff?text=Tensión+H₀+Resuelta" alt="Resolución tensión H₀">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#16a085" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#16a085" font-family="Arial" font-size="18">Resolución Tensión H₀</text>
+                        <rect x="80" y="100" width="120" height="80" fill="#e74c3c" fill-opacity="0.5"/>
+                        <text x="140" y="140" text-anchor="middle" fill="white" font-family="Arial" font-size="14">4.2σ</text>
+                        <text x="140" y="160" text-anchor="middle" fill="white" font-family="Arial" font-size="12">ΛCDM</text>
+                        
+                        <rect x="200" y="120" width="120" height="60" fill="#27ae60" fill-opacity="0.7"/>
+                        <text x="260" y="150" text-anchor="middle" fill="white" font-family="Arial" font-size="14">1.8σ</text>
+                        <text x="260" y="170" text-anchor="middle" fill="white" font-family="Arial" font-size="12">Vacuón</text>
+                        
+                        <text x="200" y="220" text-anchor="middle" fill="#16a085" font-family="Arial" font-size="12">57% de mejora</text>
+                    </svg>
                     <p class="graphic-caption">Resolución de la tensión H₀: 4.2σ → 1.8σ (57% mejora)</p>
                 </div>
             </div>
@@ -352,11 +415,38 @@
 
             <div class="graphics-container">
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/27ae60/ffffff?text=DESI+2024+Ajuste" alt="Ajuste a datos DESI">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#27ae60" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#27ae60" font-family="Arial" font-size="18">Ajuste a Datos DESI 2024</text>
+                        
+                        <rect x="80" y="100" width="120" height="80" fill="#7f8c8d" fill-opacity="0.5"/>
+                        <text x="140" y="140" text-anchor="middle" fill="white" font-family="Arial" font-size="14">35.2/23</text>
+                        <text x="140" y="160" text-anchor="middle" fill="white" font-family="Arial" font-size="12">ΛCDM</text>
+                        
+                        <rect x="200" y="120" width="120" height="60" fill="#27ae60" fill-opacity="0.7"/>
+                        <text x="260" y="150" text-anchor="middle" fill="white" font-family="Arial" font-size="14">28.3/19</text>
+                        <text x="260" y="170" text-anchor="middle" fill="white" font-family="Arial" font-size="12">Vacuón</text>
+                        
+                        <text x="200" y="220" text-anchor="middle" fill="#27ae60" font-family="Arial" font-size="12">χ²/dof</text>
+                    </svg>
                     <p class="graphic-caption">Ajuste a datos DESI 2024: χ²/dof = 28.3/19 vs 35.2/23 (ΛCDM)</p>
                 </div>
                 <div class="graphic">
-                    <img src="https://via.placeholder.com/400x250/8e44ad/ffffff?text=Momento+Magnético+Anómalo" alt="Momento magnético anómalo">
+                    <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="250" fill="#8e44ad" fill-opacity="0.1" rx="8"/>
+                        <text x="200" y="30" text-anchor="middle" fill="#8e44ad" font-family="Arial" font-size="18">Momento Magnético Anómalo</text>
+                        
+                        <line x1="50" y1="200" x2="350" y2="200" stroke="#7f8c8d" stroke-width="1"/>
+                        <line x1="50" y1="50" x2="50" y2="200" stroke="#7f8c8d" stroke-width="1"/>
+                        
+                        <rect x="60" y="150" width="280" height="40" fill="#8e44ad" fill-opacity="0.3" stroke="#8e44ad" stroke-width="2"/>
+                        <text x="200" y="170" text-anchor="middle" fill="#2c3e50" font-family="Arial" font-size="12">Límite experimental: 2.8×10⁻¹³</text>
+                        
+                        <circle cx="200" cy="190" r="3" fill="#e74c3c"/>
+                        <text x="210" y="190" text-anchor="start" fill="#e74c3c" font-family="Arial" font-size="10">Predicción: 1.8×10⁻⁴⁸</text>
+                        
+                        <text x="30" y="125" text-anchor="start" fill="#7f8c8d" font-family="Arial" font-size="10" transform="rotate(-90 30,125)">Δaₑ</text>
+                    </svg>
                     <p class="graphic-caption">Δa<sub>e</sub> = 1.847×10⁻⁴⁸ vs límite experimental 2.8×10⁻¹³</p>
                 </div>
             </div>
@@ -375,16 +465,12 @@
             
             <div class="simulation">
                 <h3 style="color: white;">Espectro de Potencia de Materia</h3>
-                <div class="simulation-canvas" id="powerSpectrum">
-                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #7f8c8d;">
-                        [Simulación: Espectro de potencia P(k) para modelo Vacuón vs ΛCDM]
-                    </div>
-                </div>
+                <canvas id="powerSpectrum" class="simulation-canvas"></canvas>
                 <div class="simulation-controls">
-                    <button onclick="changeRedshift(0)">z=0</button>
-                    <button onclick="changeRedshift(1)">z=1</button>
-                    <button onclick="changeRedshift(3)">z=3</button>
-                    <button onclick="toggleModels()">Alternar Modelos</button>
+                    <button id="redshift0">z=0</button>
+                    <button id="redshift1">z=1</button>
+                    <button id="redshift3">z=3</button>
+                    <button id="toggleModels">Alternar Modelos</button>
                 </div>
                 <p>Comparación del espectro de potencia entre el modelo Vacuón y ΛCDM</p>
             </div>
@@ -420,31 +506,218 @@
             </a>
             <p style="margin-top: 15px; color: #7f8c8d;">Incluye: Desarrollos matemáticos completos, códigos Python, análisis bayesiano, y apéndices detallados</p>
         </div>
+        
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 TEORÍA DEL CAMPO VACUÓN V Unificación Oscura | Todos los derechos reservados | <strong><a href="https://informaticabigbosspy.blogspot.com/p/principal.html">BIG BOSS Informática & Servicios</a></strong>.</p>
+            <p>Contacto: asesor.teducativo@gmail.com | Capiata, Paraguay</p>
+        </footer>
     </div>
 
     <script>
-        // Funciones de simulación (placeholders)
-        function startSimulation() {
-            alert('Simulación iniciada: Evolución del campo Vacuón');
+        // Simulación de evolución del campo Vacuón
+        const vacuonCanvas = document.getElementById('vacuonEvolution');
+        const vacuonCtx = vacuonCanvas.getContext('2d');
+        
+        // Ajustar tamaño del canvas
+        vacuonCanvas.width = vacuonCanvas.offsetWidth;
+        vacuonCanvas.height = vacuonCanvas.offsetHeight;
+        
+        let simulationRunning = false;
+        let simulationTime = 0;
+        
+        function drawVacuonEvolution() {
+            vacuonCtx.clearRect(0, 0, vacuonCanvas.width, vacuonCanvas.height);
+            
+            // Dibujar ejes
+            vacuonCtx.strokeStyle = '#7f8c8d';
+            vacuonCtx.lineWidth = 1;
+            vacuonCtx.beginPath();
+            vacuonCtx.moveTo(50, 50);
+            vacuonCtx.lineTo(50, vacuonCanvas.height - 50);
+            vacuonCtx.moveTo(50, vacuonCanvas.height - 50);
+            vacuonCtx.lineTo(vacuonCanvas.width - 50, vacuonCanvas.height - 50);
+            vacuonCtx.stroke();
+            
+            // Etiquetas de ejes
+            vacuonCtx.fillStyle = '#ecf0f1';
+            vacuonCtx.font = '12px Arial';
+            vacuonCtx.fillText('Φ(t)', 20, 30);
+            vacuonCtx.fillText('t', vacuonCanvas.width - 30, vacuonCanvas.height - 20);
+            
+            // Dibujar evolución del campo
+            vacuonCtx.strokeStyle = '#3498db';
+            vacuonCtx.lineWidth = 2;
+            vacuonCtx.beginPath();
+            
+            const centerY = vacuonCanvas.height / 2;
+            const amplitude = 80;
+            const frequency = 0.02;
+            
+            for (let x = 50; x < vacuonCanvas.width - 50; x++) {
+                const t = (x - 50) * frequency + simulationTime;
+                const y = centerY + amplitude * Math.sin(t) * Math.exp(-t * 0.01);
+                if (x === 50) {
+                    vacuonCtx.moveTo(x, y);
+                } else {
+                    vacuonCtx.lineTo(x, y);
+                }
+            }
+            
+            vacuonCtx.stroke();
+            
+            // Punto actual
+            const currentX = vacuonCanvas.width - 50;
+            const currentY = centerY + amplitude * Math.sin((currentX - 50) * frequency + simulationTime) * 
+                            Math.exp(-((currentX - 50) * frequency + simulationTime) * 0.01);
+            
+            vacuonCtx.fillStyle = '#e74c3c';
+            vacuonCtx.beginPath();
+            vacuonCtx.arc(currentX, currentY, 5, 0, Math.PI * 2);
+            vacuonCtx.fill();
+            
+            if (simulationRunning) {
+                simulationTime += 0.05;
+                requestAnimationFrame(drawVacuonEvolution);
+            }
         }
-
-        function pauseSimulation() {
-            alert('Simulación pausada');
+        
+        // Simulación del espectro de potencia
+        const powerCanvas = document.getElementById('powerSpectrum');
+        const powerCtx = powerCanvas.getContext('2d');
+        
+        // Ajustar tamaño del canvas
+        powerCanvas.width = powerCanvas.offsetWidth;
+        powerCanvas.height = powerCanvas.offsetHeight;
+        
+        let currentRedshift = 0;
+        let showVacuonModel = true;
+        
+        function drawPowerSpectrum() {
+            powerCtx.clearRect(0, 0, powerCanvas.width, powerCanvas.height);
+            
+            // Dibujar ejes
+            powerCtx.strokeStyle = '#7f8c8d';
+            powerCtx.lineWidth = 1;
+            powerCtx.beginPath();
+            powerCtx.moveTo(50, 50);
+            powerCtx.lineTo(50, powerCanvas.height - 50);
+            powerCtx.moveTo(50, powerCanvas.height - 50);
+            powerCtx.lineTo(powerCanvas.width - 50, powerCanvas.height - 50);
+            powerCtx.stroke();
+            
+            // Etiquetas de ejes
+            powerCtx.fillStyle = '#ecf0f1';
+            powerCtx.font = '12px Arial';
+            powerCtx.fillText('P(k)', 20, 30);
+            powerCtx.fillText('k [h/Mpc]', powerCanvas.width - 60, powerCanvas.height - 20);
+            
+            // Dibujar espectro de potencia ΛCDM
+            powerCtx.strokeStyle = '#e74c3c';
+            powerCtx.lineWidth = 2;
+            powerCtx.beginPath();
+            
+            for (let x = 50; x < powerCanvas.width - 50; x++) {
+                const k = (x - 50) / (powerCanvas.width - 100) * 2; // k de 0 a 2
+                const logP = Math.log10(1 + k * 10) * 30 - 100 - currentRedshift * 10;
+                const y = powerCanvas.height - 50 - logP;
+                
+                if (x === 50) {
+                    powerCtx.moveTo(x, y);
+                } else {
+                    powerCtx.lineTo(x, y);
+                }
+            }
+            
+            powerCtx.stroke();
+            powerCtx.fillStyle = '#e74c3c';
+            powerCtx.fillText('ΛCDM', powerCanvas.width - 100, 70);
+            
+            // Dibujar espectro de potencia Vacuón si está activo
+            if (showVacuonModel) {
+                powerCtx.strokeStyle = '#3498db';
+                powerCtx.lineWidth = 2;
+                powerCtx.beginPath();
+                
+                for (let x = 50; x < powerCanvas.width - 50; x++) {
+                    const k = (x - 50) / (powerCanvas.width - 100) * 2; // k de 0 a 2
+                    let logP = Math.log10(1 + k * 10) * 30 - 100 - currentRedshift * 10;
+                    
+                    // Supresión en pequeñas escalas para el modelo Vacuón
+                    if (k > 0.5) {
+                        logP -= 20 * (k - 0.5);
+                    }
+                    
+                    const y = powerCanvas.height - 50 - logP;
+                    
+                    if (x === 50) {
+                        powerCtx.moveTo(x, y);
+                    } else {
+                        powerCtx.lineTo(x, y);
+                    }
+                }
+                
+                powerCtx.stroke();
+                powerCtx.fillStyle = '#3498db';
+                powerCtx.fillText('Vacuón', powerCanvas.width - 100, 90);
+            }
+            
+            // Mostrar redshift actual
+            powerCtx.fillStyle = '#ecf0f1';
+            powerCtx.fillText(`z = ${currentRedshift}`, powerCanvas.width - 100, 50);
         }
-
-        function resetSimulation() {
-            alert('Simulación reiniciada');
-        }
-
-        function changeRedshift(z) {
-            alert(`Cambiando a redshift z = ${z}`);
-        }
-
-        function toggleModels() {
-            alert('Alternando entre modelo Vacuón y ΛCDM');
-        }
-
-        // Animación simple para los elementos
+        
+        // Event listeners para los controles
+        document.getElementById('startSimulation').addEventListener('click', function() {
+            simulationRunning = true;
+            drawVacuonEvolution();
+        });
+        
+        document.getElementById('pauseSimulation').addEventListener('click', function() {
+            simulationRunning = false;
+        });
+        
+        document.getElementById('resetSimulation').addEventListener('click', function() {
+            simulationRunning = false;
+            simulationTime = 0;
+            drawVacuonEvolution();
+        });
+        
+        document.getElementById('redshift0').addEventListener('click', function() {
+            currentRedshift = 0;
+            drawPowerSpectrum();
+        });
+        
+        document.getElementById('redshift1').addEventListener('click', function() {
+            currentRedshift = 1;
+            drawPowerSpectrum();
+        });
+        
+        document.getElementById('redshift3').addEventListener('click', function() {
+            currentRedshift = 3;
+            drawPowerSpectrum();
+        });
+        
+        document.getElementById('toggleModels').addEventListener('click', function() {
+            showVacuonModel = !showVacuonModel;
+            drawPowerSpectrum();
+        });
+        
+        // Inicializar gráficos
+        window.addEventListener('resize', function() {
+            vacuonCanvas.width = vacuonCanvas.offsetWidth;
+            vacuonCanvas.height = vacuonCanvas.offsetHeight;
+            powerCanvas.width = powerCanvas.offsetWidth;
+            powerCanvas.height = powerCanvas.offsetHeight;
+            drawVacuonEvolution();
+            drawPowerSpectrum();
+        });
+        
+        // Inicializar
+        drawVacuonEvolution();
+        drawPowerSpectrum();
+        
+        // Animación de entrada
         document.addEventListener('DOMContentLoaded', function() {
             const cards = document.querySelectorAll('.card');
             cards.forEach((card, index) => {
@@ -460,12 +733,4 @@
         });
     </script>
 </body>
-<div class="card">
-   <footer>
-
-        <p>© 2025 TEORÍA DEL CAMPO VACUON V Unificación Oscura| Todos los derechos reservados | <strong><a href="https://informaticabigbosspy.blogspot.com/p/principal.html">BIG BOSS Informática & Servicios</a></strong>.</p>
-
-        <p>Contacto: asesor.teducativo@gmail.com | Capiata, Paraguay</p>
-
-    </footer> </div>
 </html>
