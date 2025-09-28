@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoría del Campo Vacuón V - Resumen Ejecutivo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .title {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .author {
+            color: #34495e;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #3498db;
+        }
+
+        .equation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            text-align: center;
+            font-family: 'Cambria Math', serif;
+            font-size: 1.1em;
+            border: 1px solid #e9ecef;
+        }
+
+        .graphics-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .graphic {
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .graphic img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .graphic-caption {
+            font-style: italic;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .simulation {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .simulation-controls {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .simulation-controls button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .simulation-controls button:hover {
+            background: #2980b9;
+        }
+
+        .simulation-canvas {
+            background: #1a252f;
+            border-radius: 8px;
+            width: 100%;
+            height: 300px;
+            margin: 15px 0;
+        }
+
+        .download-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 4px solid #3498db;
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: #3498db;
+        }
+
+        .conclusion {
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2em;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">Masa Emergente: ¿Unificación Efectiva de Materia y Energía Oscura?</h1>
+            <h2 class="subtitle">Teoría del Campo Vacuón V</h2>
+            <p class="author">Arnaldo Adrián Ozorio Olea</p>
+            <p class="author">asesor.teducativo@gmail.com</p>
+            <p class="author">Capitata - Paraguay</p>
+            <p class="author">28 de Septiembre 2025</p>
+        </div>
+
+        <!-- Resumen -->
+        <div class="card">
+            <h2>Resumen Ejecutivo</h2>
+            <p>Esta investigación presenta la formulación completa de la <strong>Teoría del Campo Vacuón V</strong>, un marco teórico unificado que explica simultáneamente:</p>
+            
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">⚛️</div>
+                    <h3>Origen de la Masa</h3>
+                    <p>La masa del electrón emerge como propiedad de la densidad del campo de Dirac</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌌</div>
+                    <h3>Materia Oscura</h3>
+                    <p>Como excitaciones ultraligeras del campo Vacuón (∼10⁻³³ eV)</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Energía Oscura</h3>
+                    <p>Dinámica con ecuación de estado variable w(z)</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p><strong>Resultado Clave:</strong> El modelo elimina parámetros de masa fundamentales, resuelve las tensiones cosmológicas H₀ y S₈, y genera predicciones falsables para experimentos futuros.</p>
+            </div>
+        </div>
+
+        <!-- Marco Teórico -->
+        <div class="card">
+            <h2>Marco Teórico Fundamental</h2>
+            
+            <div class="equation">
+                S = ∫d⁴x√{-g} [ℒ<sub>grav</sub> + ℒ<sub>Φᵥ</sub> + ℒ<sub>ψ</sub> + ℒ<sub>int</sub> + ℒ<sub>geom</sub>]
+            </div>
+
+            <p>La acción fundamental incorpora:</p>
+            <ul>
+                <li><strong>Gravedad con acoplamiento no-minimal</strong>: ξΦᵥ²R</li>
+                <li><strong>Campo Vacuón escalar</strong>: Φᵥ con VEV ∼ M<sub>Pl</sub></li>
+                <li><strong>Campo de Dirac sin masa explícita</strong></li>
+                <li><strong>Interacciones Yukawa y geométricas</strong></li>
+            </ul>
+
+            <div class="graphics-container">
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/3498db/ffffff?text=Diagrama+Vacuón-Dirac" alt="Diagrama de interacción Vacuón-Dirac">
+                    <p class="graphic-caption">Diagrama de interacción entre el campo Vacuón y el campo de Dirac</p>
+                </div>
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/2ecc71/ffffff?text=Potencial+Efectivo" alt="Potencial efectivo del Vacuón">
+                    <p class="graphic-caption">Potencial efectivo del campo Vacuón mostrando mínimos estables</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mecanismo de Generación de Masa -->
+        <div class="card">
+            <h2>Mecanismo de Generación de Masa Emergente</h2>
+            
+            <div class="equation">
+                m<sub>e</sub><sup>eff</sup> = g<sub>e</sub>v<sub>v</sub> + Δm<sub>4F</sub>
+            </div>
+
+            <p>La masa del electrón emerge de tres contribuciones:</p>
+            
+            <div class="graphics-container">
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/e74c3c/ffffff?text=Contribución+Yukawa" alt="Contribución Yukawa">
+                    <p class="graphic-caption">Contribución Yukawa: m<sub>e</sub><sup>(Y)</sup> = g<sub>e</sub>v<sub>v</sub> ≈ 0.511 MeV</p>
+                </div>
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/9b59b6/ffffff?text=Cuatro+Fermiones" alt="Contribución cuatro fermiones">
+                    <p class="graphic-caption">Contribución cuatro fermiones: m<sub>e</sub><sup>(4F)</sup> ∼ 10⁻²² M<sub>Pl</sub></p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p><strong>Logro fundamental:</strong> La pequeñez del acoplamiento g<sub>e</sub> ∼ 10⁻²³ emerge naturalmente de la escala de Planck, eliminando el problema de jerarquía.</p>
+            </div>
+        </div>
+
+        <!-- Simulación Cosmológica -->
+        <div class="card">
+            <h2>Simulaciones Cosmológicas</h2>
+            
+            <div class="simulation">
+                <h3 style="color: white;">Evolución del Campo Vacuón</h3>
+                <div class="simulation-canvas" id="vacuonEvolution">
+                    <!-- Aquí iría el canvas para la simulación -->
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #7f8c8d;">
+                        [Simulación: Evolución temporal del campo Vacuón]
+                    </div>
+                </div>
+                <div class="simulation-controls">
+                    <button onclick="startSimulation()">Iniciar Simulación</button>
+                    <button onclick="pauseSimulation()">Pausar</button>
+                    <button onclick="resetSimulation()">Reiniciar</button>
+                </div>
+                <p>Parámetros: ξ = 1.028, λ<sub>v</sub> = 1.18×10⁻¹²⁰, v<sub>v</sub> = 1.02×10¹⁹ GeV</p>
+            </div>
+
+            <div class="graphics-container">
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/34495e/ffffff?text=Ecuación+de+Estado+w(z)" alt="Ecuación de estado w(z)">
+                    <p class="graphic-caption">Evolución de la ecuación de estado w(z) del Vacuón</p>
+                </div>
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/16a085/ffffff?text=Tensión+H₀+Resuelta" alt="Resolución tensión H₀">
+                    <p class="graphic-caption">Resolución de la tensión H₀: 4.2σ → 1.8σ (57% mejora)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Validación Experimental -->
+        <div class="card">
+            <h2>Validación Experimental</h2>
+            
+            <div class="highlight">
+                <p><strong>Compatibilidad completa</strong> con todas las pruebas experimentales de precisión:</p>
+            </div>
+
+            <div class="graphics-container">
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/27ae60/ffffff?text=DESI+2024+Ajuste" alt="Ajuste a datos DESI">
+                    <p class="graphic-caption">Ajuste a datos DESI 2024: χ²/dof = 28.3/19 vs 35.2/23 (ΛCDM)</p>
+                </div>
+                <div class="graphic">
+                    <img src="https://via.placeholder.com/400x250/8e44ad/ffffff?text=Momento+Magnético+Anómalo" alt="Momento magnético anómalo">
+                    <p class="graphic-caption">Δa<sub>e</sub> = 1.847×10⁻⁴⁸ vs límite experimental 2.8×10⁻¹³</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 20px;">Predicciones Falsables</h3>
+            <ul>
+                <li><strong>Oscilaciones en constantes fundamentales</strong>: δν/ν ∼ 10⁻¹⁸-10⁻²² detectable con relojes atómicos</li>
+                <li><strong>Espectro de potencia modificado</strong>: Supresión en pequeñas escalas k > 1 h/Mpc</li>
+                <li><strong>Ecuación de estado variable</strong>: w(z) medible con Euclid (2024-2030)</li>
+            </ul>
+        </div>
+
+        <!-- Simulación de Perturbaciones -->
+        <div class="card">
+            <h2>Simulación de Perturbaciones Cosmológicas</h2>
+            
+            <div class="simulation">
+                <h3 style="color: white;">Espectro de Potencia de Materia</h3>
+                <div class="simulation-canvas" id="powerSpectrum">
+                    <div style="display: flex; justify-content: center; align-items: center; height: 100%; color: #7f8c8d;">
+                        [Simulación: Espectro de potencia P(k) para modelo Vacuón vs ΛCDM]
+                    </div>
+                </div>
+                <div class="simulation-controls">
+                    <button onclick="changeRedshift(0)">z=0</button>
+                    <button onclick="changeRedshift(1)">z=1</button>
+                    <button onclick="changeRedshift(3)">z=3</button>
+                    <button onclick="toggleModels()">Alternar Modelos</button>
+                </div>
+                <p>Comparación del espectro de potencia entre el modelo Vacuón y ΛCDM</p>
+            </div>
+        </div>
+
+        <!-- Conclusiones -->
+        <div class="card">
+            <h2>Conclusiones y Perspectivas</h2>
+            
+            <div class="conclusion">
+                <p><strong>La Teoría del Campo Vacuón V representa un avance significativo</strong> en la unificación de fenómenos fundamentales mediante mecanismos emergentes:</p>
+                
+                <ul>
+                    <li>✅ <strong>Unificación natural</strong> de masa, materia oscura y energía oscura</li>
+                    <li>✅ <strong>Resolución de tensiones cosmológicas</strong> H₀ y S₈</li>
+                    <li>✅ <strong>Compatibilidad experimental completa</strong> con pruebas de precisión</li>
+                    <li>✅ <strong>Predicciones falsables</strong> para la próxima generación de experimentos</li>
+                    <li>✅ <strong>Implementación numérica robusta</strong> con verificación independiente</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <p><strong>Próximos pasos:</strong> Validación con datos DESI Year 3 (2025), simulaciones N-body avanzadas, y búsqueda experimental directa de oscilaciones del Vacuón.</p>
+            </div>
+        </div>
+
+        <!-- Descarga -->
+        <div class="download-section">
+            <h2>Documento Completo</h2>
+            <p>Descarga el artículo completo con todos los desarrollos matemáticos, cálculos detallados y referencias:</p>
+            <a href="https://arnaldozpy.github.io/Vacuon/Masas_Emergentes_-_Unificacion_Efectiva_de_Energia_y_Materia_Oscura.pdf" class="download-btn" download>
+                📥 Descargar PDF Completo (2.5 MB)
+            </a>
+            <p style="margin-top: 15px; color: #7f8c8d;">Incluye: Desarrollos matemáticos completos, códigos Python, análisis bayesiano, y apéndices detallados</p>
+        </div>
+    </div>
+
+    <script>
+        // Funciones de simulación (placeholders)
+        function startSimulation() {
+            alert('Simulación iniciada: Evolución del campo Vacuón');
+        }
+
+        function pauseSimulation() {
+            alert('Simulación pausada');
+        }
+
+        function resetSimulation() {
+            alert('Simulación reiniciada');
+        }
+
+        function changeRedshift(z) {
+            alert(`Cambiando a redshift z = ${z}`);
+        }
+
+        function toggleModels() {
+            alert('Alternando entre modelo Vacuón y ΛCDM');
+        }
+
+        // Animación simple para los elementos
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        });
+    </script>
+</body>
+</html>
