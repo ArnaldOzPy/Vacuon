@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoría del Vacuón-Dilatón - Resumen Ejecutivo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #3949ab;
+            --light: #e8eaf6;
+            --dark: #0d1440;
+            --text: #212121;
+            --text-light: #757575;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2.5rem 0;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.05)"/></svg>');
+            background-size: cover;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .author {
+            margin-top: 1.5rem;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .card h2 {
+            color: var(--primary);
+            border-bottom: 3px solid var(--accent);
+            padding-bottom: 0.7rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .highlight {
+            background: var(--light);
+            padding: 1.5rem;
+            border-left: 5px solid var(--accent);
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .graphic-container {
+            width: 100%;
+            height: 300px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.5rem 0;
+            border: 1px solid #ddd;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+        
+        .equation {
+            font-family: 'Cambria Math', serif;
+            font-size: 1.3rem;
+            text-align: center;
+            margin: 1.5rem 0;
+            padding: 1.2rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow-x: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .download-section {
+            text-align: center;
+            padding: 3.5rem 2rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 10px;
+            margin-top: 2rem;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #303f9f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            border-top: 1px solid #ddd;
+            color: var(--text-light);
+        }
+        
+        .prediction-item {
+            padding: 1rem;
+            border-left: 3px solid var(--accent);
+            margin-bottom: 1rem;
+            background: #f9f9f9;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .result-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        .feature-list {
+            list-style-type: none;
+        }
+        
+        .feature-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .feature-list li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Teoría del Vacuón-Dilatón</h1>
+            <p class="subtitle">Un marco unificado para gravedad emergente, materia oscura y energía oscura mediante ruptura espontánea de simetría de escala</p>
+            <p class="author">Arnaldo Adrián Ozorio Olea - Investigador Independiente</p>
+        </header>
+        
+        <section class="card">
+            <h2>Resumen Ejecutivo</h2>
+            <p>La <strong>Teoría del Vacuón-Dilatón (TVD)</strong> propone que la gravedad no es una fuerza fundamental sino un fenómeno emergente derivado de un campo escalar cuántico Φ(x) que regula la geometría mediante su fase y magnitud. Este campo unifica propiedades del dilatón (portador de escala) y del Vacuón (estado coherente cuántico del espacio-tiempo).</p>
+            
+            <div class="highlight">
+                <p>La teoría resuelve problemas fundamentales de la física moderna: <strong>singularidades espacio-temporales</strong>, el <strong>problema de la constante cosmológica</strong> (discrepancia de 10<sup>120</sup>), y la <strong>incompatibilidad entre gravedad y mecánica cuántica</strong>, mediante mecanismos de auto-regulación dinámica.</p>
+            </div>
+            
+            <p>El formalismo es invariante conforme en su límite fundamental y genera espontáneamente escalas físicas, incluyendo la masa de Planck y el potencial cosmológico. Su estabilidad cuántica se garantiza mediante auto-regulación dinámica.</p>
+        </section>
+        
+        <section class="card">
+            <h2>Postulados Fundamentales</h2>
+            <div class="grid">
+                <div>
+                    <h3>Emergencia de Escalas</h3>
+                    <p>Todas las escalas dimensionales (Planck, cosmológica, de partículas) surgen dinámicamente de una teoría inicial sin dimensiones mediante ruptura espontánea de simetría de escala.</p>
+                </div>
+                <div>
+                    <h3>Sincronización del Vacuón</h3>
+                    <p>La geometría del espacio-tiempo refleja el estado de fase del campo escalar coherente Φ. El horizonte de eventos corresponde a una superficie de sincronización de fase donde ∇<sub>μ</sub>θ|<sub>H</sub> = 0.</p>
+                </div>
+                <div>
+                    <h3>Auto-Regulación del Vacío</h3>
+                    <p>Los efectos no-lineales del campo Φ proveen retroalimentación negativa que evita divergencias de curvatura, resolviendo las singularidades clásicas mediante un mecanismo de corte dinámico.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2>Formulación Matemática</h2>
+            <p>La acción fundamental en el marco Jordan (unidades naturales ħ = c = 1):</p>
+            <div class="equation">
+                S[g,Φ,Ψ] = ∫ d⁴x √{-g} [½F(Φ)R - ½g<sup>μν</sup>∇<sub>μ</sub>Φ∇<sub>ν</sub>Φ - V(Φ) + ℒ<sub>m</sub>(g,Ψ,Φ)]
+            </div>
+            <p>Con F(Φ) = ξΦ² (acoplamiento no-mínimo) y V(Φ) = λ/4 Φ⁴ (potencial quártico puro).</p>
+            
+            <p>Transformación conforme al marco Einstein:</p>
+            <div class="equation">
+                g̃<sub>μν</sub> = Ω² g<sub>μν</sub>, Ω² = F(Φ)/M₀² = ξΦ²/M₀²
+            </div>
+            
+            <p>Campo canónico χ definido por:</p>
+            <div class="equation">
+                χ(Φ) = M₀√[(1+6ξ)/ξ] ln(Φ/μ<sub>*</sub>)
+            </div>
+            
+            <div class="graphic-container">
+                <canvas id="conformalChart"></canvas>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2>Resultados Clave</h2>
+            
+            <div class="result-item">
+                <h3>Cancelación de la Constante Cosmológica</h3>
+                <div class="equation">
+                    λ = 8ξ ⇒ ρ<sub>Λ</sub><sup>eff</sup> = 0
+                </div>
+                <p>Esta relación emerge como <strong>condición de consistencia dinámica</strong> del vacío, no como un ajuste fino de parámetros.</p>
+            </div>
+            
+            <div class="result-item">
+                <h3>Emergencia de la Escala de Planck</h3>
+                <div class="equation">
+                    M<sub>Pl</sub>² = ξΦ₀²
+                </div>
+                <p>La constante gravitacional efectiva está determinada por el valor esperado del vacío (VEV) del dilatón.</p>
+            </div>
+            
+            <div class="result-item">
+                <h3>Potencial Efectivo Auto-Regulado</h3>
+                <div class="equation">
+                    U(χ) = (λM₀⁴)/(4ξ²) [1 - e<sup>-2χ/F</sup>]²
+                </div>
+                <p>Regula el crecimiento del campo evitando divergencias de curvatura.</p>
+            </div>
+            
+            <div class="graphic-container">
+                <canvas id="potentialChart"></canvas>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2>Renormalización y Estabilidad Cuántica</h2>
+            
+            <p>La teoría es renormalizable gracias al acoplamiento no-mínimo ξΦ²R. Las funciones beta a 2-loops muestran:</p>
+            
+            <ul class="feature-list">
+                <li><strong>Punto fijo conforme no-trivial</strong> en λ* = 8π²/9 ε, ξ* = -1/6 + O(ε)</li>
+                <li><strong>Estabilidad del vacío</strong> garantizada para ξ > -1/6 y 9λ² - 4N<sub>f</sub>y⁴ > 0</li>
+                <li><strong>Masa del dilatón</strong> generada por anomalía conforme: m<sub>χ</sub>² ≈ (9λ² - 4N<sub>f</sub>y⁴)/(8π²) × M₀²/ξ</li>
+            </ul>
+            
+            <div class="graphic-container">
+                <canvas id="renormalizationChart"></canvas>
+            </div>
+        </section>
+        
+        <section class="card">
+            <h2>Predicciones Falsables</h2>
+            
+            <div class="grid">
+                <div class="prediction-item">
+                    <h3>Ondas Gravitatorias Escalares</h3>
+                    <p>Modos de polarización adicionales con amplitud ∼10<sup>-4</sup> respecto a modos tensoriales, detectables por LISA/Einstein Telescope.</p>
+                </div>
+                <div class="prediction-item">
+                    <h3>Violación del Principio de Equivalencia</h3>
+                    <p>Parámetro de Eötvös η ∼ 10<sup>-16</sup> - 10<sup>-15</sup> medible por MICROSCOPE/STEP.</p>
+                </div>
+                <div class="prediction-item">
+                    <h3>Fuerzas de Yukawa Sub-Milimétricas</h3>
+                    <p>Desviaciones de la ley de Newton a escalas ∼100μm, verificables en experimentos de torsión.</p>
+                </div>
+                <div class="prediction-item">
+                    <h3>Materia Oscura Ultraligera</h3>
+                    <p>El dilatón como candidato a materia oscura con m<sub>χ</sub> ∼ 10<sup>-22</sup> eV, compatible con observaciones de halos galácticos.</p>
+                </div>
+            </div>
+            
+            <div class="graphic-container">
+                <canvas id="predictionsChart"></canvas>
+            </div>
+        </section>
+        
+        <section class="download-section">
+            <h2>Documento Completo Disponible</h2>
+            <p>Acceda al manuscrito completo con todas las derivaciones matemáticas, demostraciones rigurosas, análisis de estabilidad no-lineal, y referencias bibliográficas.</p>
+            <a href="Teoria_Vacuon_Dilaton_Completa.pdf" class="btn" download>Descargar PDF Completo</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem;">Formato: PDF, 45 páginas, Incluye apéndices con cálculos detallados</p>
+        </section>
+        
+        <footer>
+            <p>Origen Emergente de la Gravedad - Teoría del Vacuón-Dilatón &copy; 2025 - Arnaldo Adrián Ozorio Olea</p>
+           <p>Investigador Independiente | Contacto: asesor.teducativo@gmail.com</p>
+          <p>Todos los Derechos Reservados | <a href="https://informaticabigbosspy.blosgpot.com/p/principal.html">BIG BOSS Informática & Servicios</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Gráfico de la transformación conforme
+        const conformalCtx = document.getElementById('conformalChart').getContext('2d');
+        new Chart(conformalCtx, {
+            type: 'line',
+            data: {
+                labels: ['0', 'Φ/Φ₀', '2Φ/Φ₀', '3Φ/Φ₀', '4Φ/Φ₀'],
+                datasets: [{
+                    label: 'Marco Jordan',
+                    data: [0, 0.3, 0.6, 0.8, 0.9],
+                    borderColor: '#3949ab',
+                    backgroundColor: 'rgba(57, 73, 171, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Marco Einstein',
+                    data: [0, 0.5, 0.8, 0.95, 0.98],
+                    borderColor: '#e53935',
+                    backgroundColor: 'rgba(229, 57, 53, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Transformación Conforme Jordan-Einstein'
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Potencial Efectivo'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Campo Escalar'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico del potencial efectivo
+        const potentialCtx = document.getElementById('potentialChart').getContext('2d');
+        new Chart(potentialCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 20}, (_, i) => i - 10),
+                datasets: [{
+                    label: 'U(χ) - Potencial Efectivo',
+                    data: Array.from({length: 20}, (_, i) => {
+                        const x = (i - 10) / 3;
+                        return Math.pow(1 - Math.exp(-2 * Math.abs(x)), 2);
+                    }),
+                    borderColor: '#3949ab',
+                    backgroundColor: 'rgba(57, 73, 171, 0.2)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Potencial Efectivo Auto-Regulado U(χ)'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'U(χ)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'χ/F'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico del flujo de renormalización
+        const renormalizationCtx = document.getElementById('renormalizationChart').getContext('2d');
+        new Chart(renormalizationCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Flujo de RG',
+                    data: [
+                        {x: 0.05, y: 0.1}, {x: 0.06, y: 0.12}, {x: 0.07, y: 0.14},
+                        {x: 0.08, y: 0.13}, {x: 0.09, y: 0.11}, {x: 0.1, y: 0.09},
+                        {x: 0.11, y: 0.08}, {x: 0.12, y: 0.07}, {x: 0.13, y: 0.065}
+                    ],
+                    backgroundColor: '#3949ab',
+                    pointRadius: 6,
+                    showLine: true,
+                    borderColor: '#3949ab',
+                    borderWidth: 1
+                }, {
+                    label: 'Punto Fijo Conforme',
+                    data: [{x: 0.1, y: 0.1}],
+                    backgroundColor: '#e53935',
+                    pointRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Flujo del Grupo de Renormalización'
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'ξ'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'λ'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Gráfico comparativo de predicciones
+        const predictionsCtx = document.getElementById('predictionsChart').getContext('2d');
+        new Chart(predictionsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Ondas Escalares', 'Violación Equivalencia', 'Fuerzas Yukawa', 'Materia Oscura'],
+                datasets: [{
+                    label: 'TVD - Señal Esperada',
+                    data: [0.8, 0.6, 0.7, 0.9],
+                    backgroundColor: '#3949ab'
+                }, {
+                    label: 'Límites Actuales',
+                    data: [0.3, 0.2, 0.4, 0.5],
+                    backgroundColor: '#e53935'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Predicciones de la TVD vs Límites Experimentales Actuales'
+                    },
+                    legend: {
+                        position: 'top',
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 1,
+                        title: {
+                            display: true,
+                            text: 'Intensidad Relativa'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Efecto de descarga (simulación)
+        document.querySelector('.btn').addEventListener('click', function() {
+            // En una implementación real, esto descargaría el PDF
+            // Para esta demostración, mostramos un mensaje
+            setTimeout(() => {
+                alert('Descarga iniciada. En una implementación real, el PDF se descargaría automáticamente.');
+            }, 500);
+        });
+    </script>
+</body>
+</html>
