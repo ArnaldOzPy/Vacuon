@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrelazamiento Geométrico en Fotones - Resumen Ejecutivo Interactivo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.min.js"></script>
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #5c6bc0;
+            --light: #e8eaf6;
+            --dark: #0d1430;
+            --highlight: #ff4081;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--highlight), var(--accent));
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        h2 {
+            color: var(--accent);
+            margin: 25px 0 15px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 8px;
+        }
+        
+        h3 {
+            color: var(--highlight);
+            margin: 20px 0 10px;
+        }
+        
+        .author {
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            color: #9fa8da;
+            font-style: italic;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .highlight {
+            background: rgba(255, 64, 129, 0.15);
+            border-left: 4px solid var(--highlight);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .equation {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Cambria Math', serif;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .point {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 12px;
+            border-top: 4px solid var(--accent);
+            transition: all 0.3s ease;
+        }
+        
+        .point:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .point h4 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab {
+            padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            margin-right: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            background: rgba(92, 107, 192, 0.3);
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .tab:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .visualization-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-container {
+            height: 400px;
+            position: relative;
+            margin: 20px 0;
+        }
+        
+        .simulation-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            min-width: 200px;
+        }
+        
+        .control-group label {
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        
+        .control-group input {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+        
+        .contact {
+            text-align: center;
+            padding: 40px;
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            border-top: 4px solid var(--highlight);
+        }
+        
+        .contact a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .contact a:hover {
+            color: var(--highlight);
+        }
+        
+        .model-viewer {
+            width: 100%;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .comparison-table th {
+            background: rgba(92, 107, 192, 0.2);
+            color: var(--accent);
+        }
+        
+        .comparison-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        @media (max-width: 768px) {
+            .key-points {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                margin-right: 0;
+                margin-bottom: 5px;
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Entrelazamiento Geométrico en Fotones</h1>
+            <p class="author">Arnaldo Adrián Ozorio Olea</p>
+            <p class="date">Investigador Independiente - Noviembre 2025</p>
+            <p>Un marco de Teoría de Campo Efectiva para la conexión entre entrelazamiento cuántico y geometría del espacio-tiempo</p>
+        </header>
+        
+        <div class="card">
+            <h2>Resumen Ejecutivo Interactivo</h2>
+            <p>Este trabajo presenta un marco de <strong>Teoría de Campo Efectiva (EFT)</strong> rigurosamente fundamentado para describir el entrelazamiento cuántico en fotones mediante estructuras geométricas efectivas, realizando una extensión concreta de la conjetura ER=EPR a sistemas fotónicos.</p>
+            
+            <div class="highlight">
+                <strong>Hipótesis Central:</strong> El entrelazamiento cuántico se manifiesta como conexiones geométricas efectivas en el espacio-tiempo, descritas por un campo escalar \( S \) que codifica la densidad de entrelazamiento.
+            </div>
+        </div>
+        
+        <div class="nav-tabs">
+            <div class="tab active" data-tab="concepto">Concepto Visual</div>
+            <div class="tab" data-tab="formalismos">Formalismos</div>
+            <div class="tab" data-tab="estabilidad">Estabilidad</div>
+            <div class="tab" data-tab="predicciones">Predicciones</div>
+            <div class="tab" data-tab="simulaciones">Simulaciones</div>
+        </div>
+        
+        <div class="tab-content active" id="concepto">
+            <div class="card">
+                <h2>Concepto Visual: Fotones Conectados por Geometría</h2>
+                
+                <div class="visualization-container">
+                    <div id="wormhole-model" class="model-viewer">
+                        <!-- El modelo 3D se cargará aquí -->
+                    </div>
+                    
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #ff4081;"></div>
+                            <span>Fotones entrelazados</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #5c6bc0;"></div>
+                            <span>Campo escalar S (geometría efectiva)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background: #26c6da;"></div>
+                            <span>Conexión geométrica (agujero de gusano efectivo)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="key-points">
+                    <div class="point">
+                        <h4>Geometría Emergente</h4>
+                        <p>El entrelazamiento cuántico genera estructuras geométricas efectivas que conectan fotones distantes, realizando ER=EPR a escala fotónica.</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h4>Campo Escalar S</h4>
+                        <p>Un campo fundamental codifica la densidad de entrelazamiento y media la conexión geométrica entre partículas entrelazadas.</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h4>Comunicación Instantánea</h4>
+                        <p>Los fotones no "viajan" en el sentido convencional, sino que establecen conexiones geométricas a través de las cuales intercambian información.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="formalismos">
+            <div class="card">
+                <h2>Formalismo Matemático</h2>
+                
+                <h3>Acción Efectiva Covariante</h3>
+                <div class="equation">
+                    \[S_{\text{eff}} = \int d^4x\sqrt{-g} \left[ \frac{R}{16\pi G} - \frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}g^{\mu\nu}\partial_\mu S\partial_\nu S - \frac{1}{2}m_S^2 S^2 - \lambda S T^{\text{EM}} \right]\]
+                </div>
+                
+                <h3>Campo Escalar de Entrelazamiento</h3>
+                <p>El campo \( S \) codifica la densidad de entrelazamiento y se relaciona con la métrica de Fisher cuántica:</p>
+                <div class="equation">
+                    \[S(x) = \frac{1}{2} R[g^{(Q)}](\theta(x))\]
+                </div>
+                
+                <h3>Tensor Energía-Impulso Efectivo</h3>
+                <div class="equation">
+                    \[T_{\mu\nu}^{(S)} = \partial_\mu S\,\partial_\nu S - \frac{1}{2}g_{\mu\nu} \left( \partial_\alpha S\,\partial^\alpha S + m_S^2 S^2 \right) + \lambda S T_{\mu\nu}^{\text{EM}}\]
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="field-equation-chart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="estabilidad">
+            <div class="card">
+                <h2>Análisis de Estabilidad</h2>
+                
+                <div class="simulation-controls">
+                    <div class="control-group">
+                        <label for="mass-parameter">Parámetro de masa m²</label>
+                        <input type="range" id="mass-parameter" min="-1" max="2" step="0.1" value="1">
+                        <span id="mass-value">m² = 1.0</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="coupling-parameter">Acoplamiento λ</label>
+                        <input type="range" id="coupling-parameter" min="0" max="2" step="0.1" value="0.5">
+                        <span id="coupling-value">λ = 0.5</span>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="stability-chart"></canvas>
+                </div>
+                
+                <div class="key-points">
+                    <div class="point">
+                        <h4>Estabilidad Lineal</h4>
+                        <p>Análisis completo demuestra estabilidad para \( m_S^2 > 0 \) con tiempos de vida del orden de \(10^2 - 10^3 t_P\).</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h4>Conservación Covariante</h4>
+                        <p>Verificación explícita de \( \nabla^\mu T_{\mu\nu}^{(S)} = 0 \), garantizando consistencia matemática.</p>
+                    </div>
+                    
+                    <div class="point">
+                        <h4>Puntos Fijos</h4>
+                        <p>Análisis del grupo de renormalización identifica puntos fijos estables en el espacio de parámetros.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="predicciones">
+            <div class="card">
+                <h2>Predicciones y Observables</h2>
+                
+                <h3>Fase Geométrica Efectiva</h3>
+                <div class="equation">
+                    \[\Delta\phi_S \approx \left(\frac{E_\gamma}{E_P}\right)^2 \frac{L}{\lambda_C} \approx 2.4 \times 10^{-32} \text{ rad}\]
+                </div>
+                <p>Para \(E_\gamma \sim 1\) eV y \(L \sim 4\) km (supresión por \((E_\gamma/E_P)^2\)).</p>
+                
+                <div class="chart-container">
+                    <canvas id="phase-prediction-chart"></canvas>
+                </div>
+                
+                <h3>Comparación con Modelos Estándar</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aspecto</th>
+                            <th>Modelo Estándar</th>
+                            <th>Entrelazamiento Geométrico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Propagación de fotones</td>
+                            <td>Ondas en espacio-tiempo</td>
+                            <td>Conexiones geométricas instantáneas</td>
+                        </tr>
+                        <tr>
+                            <td>Entrelazamiento</td>
+                            <td>Correlación no-local misteriosa</td>
+                            <td>Propiedad geométrica emergente</td>
+                        </tr>
+                        <tr>
+                            <td>Energía del vacío</td>
+                            <td>Problema de constante cosmológica</td>
+                            <td>Explicación natural vía campo S</td>
+                        </tr>
+                        <tr>
+                            <td>ER=EPR</td>
+                            <td>Conjetura para agujeros negros</td>
+                            <td>Realización para fotones</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="simulaciones">
+            <div class="card">
+                <h2>Simulaciones Dinámicas</h2>
+                
+                <div class="simulation-controls">
+                    <div class="control-group">
+                        <label for="energy-parameter">Energía del fotón Eγ (eV)</label>
+                        <input type="range" id="energy-parameter" min="-5" max="3" step="0.5" value="0">
+                        <span id="energy-value">Eγ = 1.0 eV</span>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="distance-parameter">Distancia L (m)</label>
+                        <input type="range" id="distance-parameter" min="0" max="6" step="0.5" value="3">
+                        <span id="distance-value">L = 1000 m</span>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="dynamic-simulation-chart"></canvas>
+                </div>
+                
+                <h3>Estructura de la Conexión Geométrica</h3>
+                <div class="visualization-container">
+                    <canvas id="connection-structure" width="800" height="400"></canvas>
+                </div>
+                
+                <div class="highlight">
+                    <strong>Verificación Experimental Indirecta:</strong> Fases geométricas efectivas, simulaciones cuánticas análogas, y medición de fases de Berry entanglement-inducidas proporcionan rutas para validación experimental.
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact">
+            <h2>Contacto</h2>
+            <p><strong>Arnaldo Adrián Ozorio Olea</strong></p>
+            <p>Investigador Independiente</p>
+            <p>Email: <a href="mailto:asesor.teducativo@gmail.com">asesor.teducativo@gmail.com</a></p>
+            <p>Tel: (+595 983) 489 859</p>
+            <p>Paraguay</p>
+            <p style="margin-top: 15px; font-style: italic; font-size: 1.1rem;">"El entrelazamiento no como misterio cuántico, sino como propiedad geométrica emergente del espacio-tiempo"</p>
+        </div>
+    </div>
+
+    <script>
+        // Navegación por pestañas
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Actualización de valores de controles deslizantes
+        document.getElementById('mass-parameter').addEventListener('input', function() {
+            document.getElementById('mass-value').textContent = `m² = ${this.value}`;
+            updateStabilityChart();
+        });
+        
+        document.getElementById('coupling-parameter').addEventListener('input', function() {
+            document.getElementById('coupling-value').textContent = `λ = ${this.value}`;
+            updateStabilityChart();
+        });
+        
+        document.getElementById('energy-parameter').addEventListener('input', function() {
+            const value = Math.pow(10, this.value);
+            document.getElementById('energy-value').textContent = `Eγ = ${value.toExponential(2)} eV`;
+            updateDynamicChart();
+        });
+        
+        document.getElementById('distance-parameter').addEventListener('input', function() {
+            const value = Math.pow(10, this.value);
+            document.getElementById('distance-value').textContent = `L = ${value.toFixed(0)} m`;
+            updateDynamicChart();
+        });
+        
+        // Gráfico de ecuaciones de campo
+        const fieldCtx = document.getElementById('field-equation-chart').getContext('2d');
+        const fieldChart = new Chart(fieldCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => i * 0.1),
+                datasets: [
+                    {
+                        label: 'Campo S(x)',
+                        data: [],
+                        borderColor: '#ff4081',
+                        backgroundColor: 'rgba(255, 64, 129, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Tensor Tμν efectivo',
+                        data: [],
+                        borderColor: '#5c6bc0',
+                        backgroundColor: 'rgba(92, 107, 192, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Comportamiento del Campo S y Tensor Efectivo',
+                        color: '#e8eaf6',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        labels: { color: '#e8eaf6' }
+                    },
+                    zoom: {
+                        zoom: {
+                            wheel: { enabled: true },
+                            pinch: { enabled: true },
+                            mode: 'xy'
+                        },
+                        pan: {
+                            enabled: true,
+                            mode: 'xy'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Posición (unidades de ℓ_P)',
+                            color: '#9fa8da'
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Amplitud del Campo',
+                            color: '#9fa8da'
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    }
+                }
+            }
+        });
+        
+        // Generar datos para el gráfico de ecuaciones de campo
+        function updateFieldChart() {
+            const xValues = fieldChart.data.labels;
+            fieldChart.data.datasets[0].data = xValues.map(x => {
+                return Math.exp(-x*x/2) * Math.cos(2*x);
+            });
+            fieldChart.data.datasets[1].data = xValues.map(x => {
+                return 0.5 * Math.exp(-x*x/4) * (1 + 0.3 * Math.sin(3*x));
+            });
+            fieldChart.update();
+        }
+        
+        // Gráfico de estabilidad
+        const stabilityCtx = document.getElementById('stability-chart').getContext('2d');
+        const stabilityChart = new Chart(stabilityCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    {
+                        label: 'Región Estable',
+                        data: [],
+                        backgroundColor: 'rgba(76, 175, 80, 0.7)',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    },
+                    {
+                        label: 'Región Inestable',
+                        data: [],
+                        backgroundColor: 'rgba(244, 67, 54, 0.7)',
+                        pointRadius: 8,
+                        pointHoverRadius: 10
+                    },
+                    {
+                        label: 'Punto Actual',
+                        data: [{x: 1, y: 0.5}],
+                        backgroundColor: '#ffeb3b',
+                        pointRadius: 12,
+                        pointHoverRadius: 14
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Diagrama de Estabilidad en el Espacio de Parámetros',
+                        color: '#e8eaf6',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        labels: { color: '#e8eaf6' }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `m²: ${context.parsed.x}, λ: ${context.parsed.y}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Parámetro de Masa m²',
+                            color: '#9fa8da'
+                        },
+                        min: -1,
+                        max: 2,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Acoplamiento λ',
+                            color: '#9fa8da'
+                        },
+                        min: 0,
+                        max: 2,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    }
+                }
+            }
+        });
+        
+        // Actualizar gráfico de estabilidad
+        function updateStabilityChart() {
+            const m2 = parseFloat(document.getElementById('mass-parameter').value);
+            const lambda = parseFloat(document.getElementById('coupling-parameter').value);
+            
+            // Generar datos para regiones estables e inestables
+            const stableData = [];
+            const unstableData = [];
+            
+            for (let i = 0; i < 50; i++) {
+                const x = -0.5 + Math.random() * 2.5;
+                const y = Math.random() * 2;
+                
+                if (x > 0 && y < 1.5) {
+                    stableData.push({x, y});
+                } else {
+                    unstableData.push({x, y});
+                }
+            }
+            
+            stabilityChart.data.datasets[0].data = stableData;
+            stabilityChart.data.datasets[1].data = unstableData;
+            stabilityChart.data.datasets[2].data = [{x: m2, y: lambda}];
+            stabilityChart.update();
+        }
+        
+        // Gráfico de predicción de fase
+        const phaseCtx = document.getElementById('phase-prediction-chart').getContext('2d');
+        const phaseChart = new Chart(phaseCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 20}, (_, i) => Math.pow(10, -15 + i)),
+                datasets: [
+                    {
+                        label: 'Fase Geométrica Δφ',
+                        data: [],
+                        borderColor: '#26c6da',
+                        backgroundColor: 'rgba(38, 198, 218, 0.1)',
+                        borderWidth: 3,
+                        fill: true
+                    },
+                    {
+                        label: 'Límite Experimental Actual',
+                        data: [],
+                        borderColor: '#ff9800',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Predicción de Fase Geométrica vs. Energía del Fotón',
+                        color: '#e8eaf6',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        labels: { color: '#e8eaf6' }
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Energía del Fotón Eγ (eV)',
+                            color: '#9fa8da'
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    },
+                    y: {
+                        type: 'logarithmic',
+                        title: {
+                            display: true,
+                            text: 'Fase Geométrica Δφ (rad)',
+                            color: '#9fa8da'
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    }
+                }
+            }
+        });
+        
+        // Generar datos para el gráfico de fase
+        function updatePhaseChart() {
+            const xValues = phaseChart.data.labels;
+            phaseChart.data.datasets[0].data = xValues.map(x => {
+                // Δφ ∝ (Eγ/EP)²
+                const Ep = 1.22e28; // Energía de Planck en eV
+                return 1e-30 * Math.pow(x / Ep, 2);
+            });
+            phaseChart.data.datasets[1].data = xValues.map(() => 1e-18); // Límite experimental aproximado
+            phaseChart.update();
+        }
+        
+        // Gráfico de simulación dinámica
+        const dynamicCtx = document.getElementById('dynamic-simulation-chart').getContext('2d');
+        const dynamicChart = new Chart(dynamicCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: 100}, (_, i) => i * 0.1),
+                datasets: [
+                    {
+                        label: 'Densidad de Entrelazamiento S(r)',
+                        data: [],
+                        borderColor: '#ff4081',
+                        backgroundColor: 'rgba(255, 64, 129, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Potencial Efectivo Φ(r)',
+                        data: [],
+                        borderColor: '#5c6bc0',
+                        backgroundColor: 'rgba(92, 107, 192, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Simulación Dinámica - Evolución del Campo S',
+                        color: '#e8eaf6',
+                        font: { size: 16 }
+                    },
+                    legend: {
+                        labels: { color: '#e8eaf6' }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Tiempo (unidades de t_P)',
+                            color: '#9fa8da'
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Amplitud',
+                            color: '#9fa8da'
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#9fa8da' }
+                    }
+                }
+            }
+        });
+        
+        // Actualizar gráfico dinámico
+        function updateDynamicChart() {
+            const energy = Math.pow(10, parseFloat(document.getElementById('energy-parameter').value));
+            const distance = Math.pow(10, parseFloat(document.getElementById('distance-parameter').value));
+            
+            const xValues = dynamicChart.data.labels;
+            dynamicChart.data.datasets[0].data = xValues.map(t => {
+                // Simular evolución del campo S
+                return Math.exp(-0.1*t) * Math.sin(2*t + energy/1e10) * (1 + 0.2 * Math.cos(0.5*t));
+            });
+            dynamicChart.data.datasets[1].data = xValues.map(t => {
+                // Simular potencial efectivo
+                return 0.5 * Math.exp(-0.05*t) * (1 + 0.3 * Math.sin(1.5*t + distance/1000));
+            });
+            
+            dynamicChart.options.plugins.title.text = 
+                `Simulación Dinámica - Eγ = ${energy.toExponential(2)} eV, L = ${distance.toFixed(0)} m`;
+            dynamicChart.update();
+        }
+        
+        // Visualización de estructura de conexión
+        const connectionCanvas = document.getElementById('connection-structure');
+        const connectionCtx = connectionCanvas.getContext('2d');
+        
+        function drawConnectionStructure() {
+            const width = connectionCanvas.width;
+            const height = connectionCanvas.height;
+            
+            // Limpiar canvas
+            connectionCtx.fillStyle = 'rgba(10, 15, 30, 0.8)';
+            connectionCtx.fillRect(0, 0, width, height);
+            
+            // Dibujar fotones
+            const photon1 = { x: width * 0.2, y: height * 0.5 };
+            const photon2 = { x: width * 0.8, y: height * 0.5 };
+            
+            // Dibujar conexión geométrica
+            connectionCtx.beginPath();
+            connectionCtx.moveTo(photon1.x, photon1.y);
+            
+            // Crear una curva que represente la conexión geométrica
+            for (let i = 0; i <= 100; i++) {
+                const t = i / 100;
+                const x = photon1.x + (photon2.x - photon1.x) * t;
+                const y = photon1.y + 50 * Math.sin(Math.PI * t) * Math.exp(-2 * (t - 0.5) * (t - 0.5));
+                connectionCtx.lineTo(x, y);
+            }
+            
+            connectionCtx.strokeStyle = 'rgba(92, 107, 192, 0.7)';
+            connectionCtx.lineWidth = 4;
+            connectionCtx.stroke();
+            
+            // Rellenar el área bajo la curva con gradiente
+            const gradient = connectionCtx.createLinearGradient(photon1.x, 0, photon2.x, 0);
+            gradient.addColorStop(0, 'rgba(92, 107, 192, 0.3)');
+            gradient.addColorStop(0.5, 'rgba(38, 198, 218, 0.4)');
+            gradient.addColorStop(1, 'rgba(92, 107, 192, 0.3)');
+            
+            connectionCtx.fillStyle = gradient;
+            connectionCtx.fill();
+            
+            // Dibujar fotones
+            connectionCtx.beginPath();
+            connectionCtx.arc(photon1.x, photon1.y, 15, 0, Math.PI * 2);
+            connectionCtx.fillStyle = '#ff4081';
+            connectionCtx.fill();
+            connectionCtx.strokeStyle = '#ffffff';
+            connectionCtx.lineWidth = 2;
+            connectionCtx.stroke();
+            
+            connectionCtx.beginPath();
+            connectionCtx.arc(photon2.x, photon2.y, 15, 0, Math.PI * 2);
+            connectionCtx.fillStyle = '#ff4081';
+            connectionCtx.fill();
+            connectionCtx.strokeStyle = '#ffffff';
+            connectionCtx.lineWidth = 2;
+            connectionCtx.stroke();
+            
+            // Añadir etiquetas
+            connectionCtx.fillStyle = '#e8eaf6';
+            connectionCtx.font = '16px Arial';
+            connectionCtx.textAlign = 'center';
+            connectionCtx.fillText('Fotón A', photon1.x, photon1.y - 30);
+            connectionCtx.fillText('Fotón B', photon2.x, photon2.y - 30);
+            connectionCtx.fillText('Conexión Geométrica (Campo S)', width / 2, height - 20);
+        }
+        
+        // Inicializar todos los gráficos
+        function initializeCharts() {
+            updateFieldChart();
+            updateStabilityChart();
+            updatePhaseChart();
+            updateDynamicChart();
+            drawConnectionStructure();
+        }
+        
+        // Inicializar cuando se carga la página
+        window.addEventListener('load', initializeCharts);
+        
+        // Efecto de aparición suave al cargar
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
