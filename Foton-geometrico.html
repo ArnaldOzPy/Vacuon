@@ -7,7 +7,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@1.2.1/dist/chartjs-plugin-zoom.min.js"></script>
-   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <!-- MathJax para renderizar ecuaciones -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         :root {
@@ -122,6 +123,7 @@
             overflow-x: auto;
             font-family: 'Cambria Math', serif;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
         
         .key-points {
@@ -362,6 +364,7 @@
                 <div class="visualization-container">
                     <div id="wormhole-model" class="model-viewer">
                         <!-- El modelo 3D se cargará aquí -->
+                        <canvas id="concept-canvas" width="800" height="400"></canvas>
                     </div>
                     
                     <div class="legend">
@@ -419,6 +422,11 @@
                     \[T_{\mu\nu}^{(S)} = \partial_\mu S\,\partial_\nu S - \frac{1}{2}g_{\mu\nu} \left( \partial_\alpha S\,\partial^\alpha S + m_S^2 S^2 \right) + \lambda S T_{\mu\nu}^{\text{EM}}\]
                 </div>
                 
+                <h3>Ecuación de Movimiento del Campo S</h3>
+                <div class="equation">
+                    \[\nabla^\mu\nabla_\mu S - m_S^2 S = -\lambda T^{\text{EM}}\]
+                </div>
+                
                 <div class="chart-container">
                     <canvas id="field-equation-chart"></canvas>
                 </div>
@@ -447,6 +455,14 @@
                     <canvas id="stability-chart"></canvas>
                 </div>
                 
+                <h3>Análisis de Estabilidad Lineal</h3>
+                <div class="equation">
+                    \[\frac{d^2u_\ell}{dr_*^2} + \left[\omega^2 - V_\ell(r)\right]u_\ell = 0\]
+                </div>
+                <div class="equation">
+                    \[V_\ell(r) = m_S^2 + \frac{\ell(\ell+1)}{r^2}\]
+                </div>
+                
                 <div class="key-points">
                     <div class="point">
                         <h4>Estabilidad Lineal</h4>
@@ -472,9 +488,12 @@
                 
                 <h3>Fase Geométrica Efectiva</h3>
                 <div class="equation">
-                    \[\Delta\phi_S \approx \left(\frac{E_\gamma}{E_P}\right)^2 \frac{L}{\lambda_C} \approx 2.4 \times 10^{-32} \text{ rad}\]
+                    \[\Delta\phi_S \approx \frac{\omega}{c} \int \frac{\Phi_S}{c^2} d\ell \approx \left(\frac{E_\gamma}{E_P}\right)^2 \frac{L}{\lambda_C}\]
                 </div>
-                <p>Para \(E_\gamma \sim 1\) eV y \(L \sim 4\) km (supresión por \((E_\gamma/E_P)^2\)).</p>
+                <p>Para \(E_\gamma \sim 1\) eV y \(L \sim 4\) km:</p>
+                <div class="equation">
+                    \[\Delta\phi_S \approx 2.4 \times 10^{-32} \text{ rad}\]
+                </div>
                 
                 <div class="chart-container">
                     <canvas id="phase-prediction-chart"></canvas>
@@ -542,6 +561,11 @@
                     <canvas id="connection-structure" width="800" height="400"></canvas>
                 </div>
                 
+                <h3>Potencial Efectivo del Campo S</h3>
+                <div class="equation">
+                    \[V_{\text{eff}}(\Phi_v) = V_0(\Phi_v) + \frac{1}{64\pi^2}\sum_i n_i m_i^4(\Phi_v)\left[\ln\frac{m_i^2(\Phi_v)}{\mu^2} - c_i\right]\]
+                </div>
+                
                 <div class="highlight">
                     <strong>Verificación Experimental Indirecta:</strong> Fases geométricas efectivas, simulaciones cuánticas análogas, y medición de fases de Berry entanglement-inducidas proporcionan rutas para validación experimental.
                 </div>
@@ -560,6 +584,19 @@
     </div>
 
     <script>
+        // Configuración de MathJax
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+
         // Navegación por pestañas
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
@@ -569,6 +606,11 @@
                 tab.classList.add('active');
                 const tabId = tab.getAttribute('data-tab');
                 document.getElementById(tabId).classList.add('active');
+                
+                // Reprocesar MathJax cuando se cambia de pestaña
+                if (window.MathJax) {
+                    window.MathJax.typesetPromise([document.getElementById(tabId)]);
+                }
             });
         });
         
@@ -1012,6 +1054,91 @@
             connectionCtx.fillText('Conexión Geométrica (Campo S)', width / 2, height - 20);
         }
         
+        // Visualización del concepto
+        const conceptCanvas = document.getElementById('concept-canvas');
+        const conceptCtx = conceptCanvas.getContext('2d');
+        
+        function drawConcept() {
+            const width = conceptCanvas.width;
+            const height = conceptCanvas.height;
+            
+            // Limpiar canvas
+            conceptCtx.fillStyle = 'rgba(10, 15, 30, 0.8)';
+            conceptCtx.fillRect(0, 0, width, height);
+            
+            // Dibujar espacio-tiempo como una cuadrícula
+            conceptCtx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            conceptCtx.lineWidth = 1;
+            
+            for (let i = 0; i <= width; i += 40) {
+                conceptCtx.beginPath();
+                conceptCtx.moveTo(i, 0);
+                conceptCtx.lineTo(i, height);
+                conceptCtx.stroke();
+            }
+            
+            for (let i = 0; i <= height; i += 40) {
+                conceptCtx.beginPath();
+                conceptCtx.moveTo(0, i);
+                conceptCtx.lineTo(width, i);
+                conceptCtx.stroke();
+            }
+            
+            // Dibujar fotones entrelazados
+            const photon1 = { x: width * 0.3, y: height * 0.3 };
+            const photon2 = { x: width * 0.7, y: height * 0.7 };
+            
+            // Dibujar la conexión de agujero de gusano
+            conceptCtx.beginPath();
+            conceptCtx.arc(photon1.x, photon1.y, 60, 0, Math.PI * 2);
+            conceptCtx.strokeStyle = 'rgba(92, 107, 192, 0.7)';
+            conceptCtx.lineWidth = 3;
+            conceptCtx.stroke();
+            
+            conceptCtx.beginPath();
+            conceptCtx.arc(photon2.x, photon2.y, 60, 0, Math.PI * 2);
+            conceptCtx.strokeStyle = 'rgba(92, 107, 192, 0.7)';
+            conceptCtx.lineWidth = 3;
+            conceptCtx.stroke();
+            
+            // Dibujar el túnel de conexión
+            conceptCtx.beginPath();
+            conceptCtx.moveTo(photon1.x, photon1.y);
+            conceptCtx.bezierCurveTo(
+                photon1.x + 100, photon1.y - 50,
+                photon2.x - 100, photon2.y + 50,
+                photon2.x, photon2.y
+            );
+            conceptCtx.strokeStyle = 'rgba(38, 198, 218, 0.5)';
+            conceptCtx.lineWidth = 8;
+            conceptCtx.stroke();
+            
+            // Dibujar fotones
+            conceptCtx.beginPath();
+            conceptCtx.arc(photon1.x, photon1.y, 12, 0, Math.PI * 2);
+            conceptCtx.fillStyle = '#ff4081';
+            conceptCtx.fill();
+            conceptCtx.strokeStyle = '#ffffff';
+            conceptCtx.lineWidth = 2;
+            conceptCtx.stroke();
+            
+            conceptCtx.beginPath();
+            conceptCtx.arc(photon2.x, photon2.y, 12, 0, Math.PI * 2);
+            conceptCtx.fillStyle = '#ff4081';
+            conceptCtx.fill();
+            conceptCtx.strokeStyle = '#ffffff';
+            conceptCtx.lineWidth = 2;
+            conceptCtx.stroke();
+            
+            // Añadir etiquetas
+            conceptCtx.fillStyle = '#e8eaf6';
+            conceptCtx.font = '16px Arial';
+            conceptCtx.textAlign = 'center';
+            conceptCtx.fillText('Fotón Entrelazado A', photon1.x, photon1.y - 40);
+            conceptCtx.fillText('Fotón Entrelazado B', photon2.x, photon2.y - 40);
+            conceptCtx.fillText('Conexión Geométrica (Agujero de Gusano Efectivo)', width / 2, height - 30);
+        }
+        
         // Inicializar todos los gráficos
         function initializeCharts() {
             updateFieldChart();
@@ -1019,6 +1146,7 @@
             updatePhaseChart();
             updateDynamicChart();
             drawConnectionStructure();
+            drawConcept();
         }
         
         // Inicializar cuando se carga la página
