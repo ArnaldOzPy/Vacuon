@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometría del Espacio de Teorías - Resumen Ejecutivo</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--light);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .author {
+            font-size: 1.1rem;
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+        
+        .date {
+            color: #95a5a6;
+            font-style: italic;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            background: rgba(52, 152, 219, 0.2);
+            border: none;
+            border-radius: 30px;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .tab:hover {
+            background: rgba(52, 152, 219, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .tab.active {
+            background: var(--secondary);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .content-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: var(--light);
+            margin: 20px 0 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .highlight {
+            background: rgba(231, 76, 60, 0.2);
+            padding: 15px;
+            border-left: 4px solid var(--accent);
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .concept-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .concept-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .concept-card h4 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .equation {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Cambria Math', serif;
+            text-align: center;
+            overflow-x: auto;
+        }
+        
+        .visualization {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .chart-container {
+            height: 300px;
+            width: 100%;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .chart-placeholder {
+            color: #95a5a6;
+            font-style: italic;
+        }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .results-table th, .results-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .results-table th {
+            background: rgba(52, 152, 219, 0.3);
+            color: var(--secondary);
+        }
+        
+        .results-table tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .citation {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 40px;
+            border-left: 4px solid var(--success);
+        }
+        
+        .interactive-controls {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 8px 16px;
+            background: rgba(52, 152, 219, 0.3);
+            border: none;
+            border-radius: 5px;
+            color: var(--light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(52, 152, 219, 0.5);
+        }
+        
+        .control-btn.active {
+            background: var(--secondary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .concept-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Geometría del Espacio de Teorías y Estabilidad UV en Gravedad Cuántica</h1>
+            <p class="subtitle">Un Enfoque Riguroso via Flujos de Renormalización Funcional</p>
+            <p class="author">Arnaldo Adrián Ozorio Olea</p>
+            <p class="date">Noviembre 2025</p>
+        </header>
+        
+        <div class="nav-tabs">
+            <button class="tab active" data-target="resumen">Resumen Ejecutivo</button>
+            <button class="tab" data-target="pce">Principio PCE</button>
+            <button class="tab" data-target="implementacion">Implementación</button>
+            <button class="tab" data-target="resultados">Resultados</button>
+            <button class="tab" data-target="aplicaciones">Aplicaciones</button>
+        </div>
+        
+        <section id="resumen" class="content-section active">
+            <h2>Resumen Ejecutivo</h2>
+            <p>Esta investigación desarrolla un marco riguroso para la <strong>Gravedad Cuántica Asintóticamente Segura</strong> mediante el Grupo de Renormalización Funcional (FRGE), introduciendo el <strong>Principio de Convergencia Estructural (PCE)</strong> como criterio geométrico fundamental para estabilidad UV.</p>
+            
+            <div class="highlight">
+                <p><strong>Contribución Principal:</strong> Demostración formal de que la curvatura negativa en el espacio de teorías garantiza estabilidad asintótica del flujo RG hacia un punto fijo no gaussiano.</p>
+            </div>
+            
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h4>Problema Fundamental</h4>
+                    <p>La gravedad cuántica presenta divergencias UV en tratamientos perturbativos, requiriendo un enfoque no perturbativo para lograr completitud ultravioleta.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Hipótesis Central</h4>
+                    <p>La seguridad asintótica postula un punto fijo UV con finitas direcciones relevantes, asegurando predictibilidad.</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Enfoque Innovador</h4>
+                    <p>Geometrización del espacio de acoplamientos con métrica de información cuántica para análisis de estabilidad estructural.</p>
+                </div>
+            </div>
+            
+            <h3>Ecuación FRGE Fundamental</h3>
+            <div class="equation">
+                k ∂<sub>k</sub> Γ<sub>k</sub> = ½ STr[(Γ<sub>k</sub><sup>(2)</sup> + R<sub>k</sub>)<sup>-1</sup> k ∂<sub>k</sub> R<sub>k</sub>]
+            </div>
+            
+            <div class="visualization">
+                <h4>Visualización del Flujo RG en Espacio de Teorías</h4>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        [Diagrama: Flujo RG convergiendo hacia punto fijo en variedad de curvatura negativa]
+                    </div>
+                </div>
+                <p>El flujo RG actúa como campo vectorial en variedad Riemanniana, con curvatura negativa garantizando estabilidad asintótica.</p>
+            </div>
+        </section>
+        
+        <section id="pce" class="content-section">
+            <h2>Principio de Convergencia Estructural (PCE)</h2>
+            <p>El PCE establece un criterio geométrico universal para estabilidad UV basado en la curvatura del espacio de teorías.</p>
+            
+            <h3>Formulación Matemática</h3>
+            <div class="equation">
+                β<sup>i</sup> = -G<sup>ij</sup> ∂<sub>j</sub>V  (Flujo gradiente)
+            </div>
+            <div class="equation">
+                R(G<sub>N</sub>) → R<sub>*</sub> < 0 cuando N → ∞ (Convergencia de curvatura)
+            </div>
+            
+            <div class="highlight">
+                <p><strong>Teorema PCE:</strong> Si el flujo RG es gradiente sobre variedad de curvatura negativa con espectro discreto del Hessiano, entonces posee número finito de direcciones relevantes y converge a punto fijo estructuralmente estable.</p>
+            </div>
+            
+            <h3>Métrica de Información Cuántica</h3>
+            <div class="equation">
+                G<sub>ij</sub> = ∂<sup>2</sup>Γ<sub>k</sub> / ∂g<sub>i</sub>∂g<sub>j</sub>
+            </div>
+            <p>Esta métrica Riemanniana cuantifica distancias entre teorías efectivas en el espacio de acoplamientos.</p>
+            
+            <div class="visualization">
+                <h4>Interpretación Geométrica del PCE</h4>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        [Diagrama: Variedad de teorías con regiones de curvatura positiva (inestable) y negativa (estable)]
+                    </div>
+                </div>
+                <p>La curvatura negativa actúa como mecanismo de contracción exponencial hacia el punto fijo UV.</p>
+            </div>
+        </section>
+        
+        <section id="implementacion" class="content-section">
+            <h2>Implementación Numérica Rigurosa</h2>
+            <p>Desarrollo de framework computacional en Python para resolver la FRGE con control de errores y análisis de estabilidad.</p>
+            
+            <h3>Características Principales</h3>
+            <ul>
+                <li>Discretización adaptativa del espacio de acoplamientos</li>
+                <li>Cálculo robusto del hessiano con regularización</li>
+                <li>Análisis bootstrap para estimación de errores</li>
+                <li>Integración numérica de flujos RG con control de tolerancia</li>
+                <li>Comparación múltiple de reguladores (Litim, Exponencial, PowerLaw)</li>
+            </ul>
+            
+            <h3>Algoritmo de Cálculo de Curvatura</h3>
+            <div class="interactive-controls">
+                <button class="control-btn active" data-algorithm="hessian">Cálculo de Hessiano</button>
+                <button class="control-btn" data-algorithm="christoffel">Símbolos de Christoffel</button>
+                <button class="control-btn" data-algorithm="ricci">Tensor de Ricci</button>
+            </div>
+            
+            <div id="algorithm-details">
+                <p>El algoritmo calcula numéricamente la curvatura mediante aproximación por diferencias finitas del hessiano, construcción de símbolos de Christoffel y tensor de Ricci.</p>
+            </div>
+            
+            <div class="visualization">
+                <h4>Arquitectura del Solucionador FRGE</h4>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        [Diagrama: Flujo de datos del algoritmo - Discretización → Hessiano → Curvatura → Análisis de Estabilidad]
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="resultados" class="content-section">
+            <h2>Resultados Principales</h2>
+            
+            <h3>Estabilidad de Geometrías Deformadas</h3>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Configuración</th>
+                        <th>ε<sub>cr</sub></th>
+                        <th>γ<sub>AS</sub></th>
+                        <th>Estabilidad RG</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Deformación esférica</td>
+                        <td>0.124</td>
+                        <td>2.81</td>
+                        <td>Sí</td>
+                    </tr>
+                    <tr>
+                        <td>Deformación cilíndrica</td>
+                        <td>0.089</td>
+                        <td>3.12</td>
+                        <td>Sí</td>
+                    </tr>
+                    <tr>
+                        <td>Deformación toroidal</td>
+                        <td>0.156</td>
+                        <td>2.45</td>
+                        <td>No (ε > ε<sub>cr</sub>)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>Verificación Cruzada CDT-FRGE</h3>
+            <div class="equation">
+                ρ<sub>CDT-FRGE</sub> = ⟨d<sub>s</sub><sup>CDT</sup>(k) · d<sub>s</sub><sup>FRGE</sup>(k)⟩ / (σ<sub>CDT</sub> σ<sub>FRGE</sub>)
+            </div>
+            <p>Correlación cuantitativa entre dimensión espectral calculada via FRGE y via Triangulaciones Dinámicas Causales.</p>
+            
+            <div class="visualization">
+                <h4>Convergencia de Truncaciones</h4>
+                <div class="chart-container">
+                    <div class="chart-placeholder">
+                        [Gráfico: Convergencia de acoplamientos críticos con aumento del orden de truncación N]
+                    </div>
+                </div>
+                <p>Los resultados muestran convergencia sistemática para N > 20, validando el esquema de truncación.</p>
+            </div>
+        </section>
+        
+        <section id="aplicaciones" class="content-section">
+            <h2>Aplicaciones y Perspectivas</h2>
+            
+            <h3>Geometrías de Curvatura Local Controlada</h3>
+            <p>Sustitución rigurosa del concepto especulativo de "warp drive" por familias de métricas deformadas con soporte compacto para estudio de estabilidad local.</p>
+            
+            <div class="equation">
+                ds² = -N²(x)dt² + h<sub>ij</sub>(x,t)(dxⁱ - βⁱ(x)dt)(dxʲ - βʲ(x)dt)
+            </div>
+            
+            <h3>Predicciones Fenomenológicas</h3>
+            <div class="concept-grid">
+                <div class="concept-card">
+                    <h4>Colisionadores</h4>
+                    <p>Límites mejorados para SUSY: m<sub>SUSY</sub> > 3.0 TeV (HL-LHC)</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Cosmología</h4>
+                    <p>Restricciones en ecuación de estado: |w(z) + 1| < 0.01 (DESI)</p>
+                </div>
+                <div class="concept-card">
+                    <h4>Inflación</h4>
+                    <p>Índice espectral: n<sub>s</sub> = 0.9649 ± 0.0042 (Planck)</p>
+                </div>
+            </div>
+            
+            <h3>Líneas Futuras de Investigación</h3>
+            <ul>
+                <li>Extensión a truncaciones supersimétricas</li>
+                <li>Incorporación de campos de materia gauge y fermiónicos</li>
+                <li>Simulaciones numéricas de geometrías deformadas</li>
+                <li>Conexión con entropía de entrelazamiento y termodinámica de agujeros negros</li>
+                <li>Verificación exhaustiva via Triangulaciones Dinámicas Causales</li>
+            </ul>
+        </section>
+        
+        <div class="citation">
+            <p><strong>Cita:</strong> Ozorio Olea, A. A. (2025). Geometry of Theory Space and UV Stability in Quantum Gravity: A Rigorous Approach via Functional Renormalization Flows (V1.0). Zenodo / CERN – European Organization for Nuclear Research. https://doi.org/10.5281/zenodo.17566546</p>
+        </div>
+    </div>
+
+    <script>
+        // Navegación por pestañas
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remover clase active de todas las pestañas y secciones
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                
+                // Activar pestaña clickeada
+                this.classList.add('active');
+                
+                // Mostrar sección correspondiente
+                const targetId = this.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+        
+        // Controles interactivos de algoritmos
+        document.querySelectorAll('.control-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.control-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const algorithm = this.getAttribute('data-algorithm');
+                const details = document.getElementById('algorithm-details');
+                
+                // Actualizar detalles según algoritmo seleccionado
+                switch(algorithm) {
+                    case 'hessian':
+                        details.innerHTML = '<p>El algoritmo calcula numéricamente el hessiano G<sub>ij</sub> = ∂<sup>2</sup>Γ<sub>k</sub>/∂g<sub>i</sub>∂g<sub>j</sub> mediante diferencias finitas de cuarto orden con regularización para asegurar definición positiva.</p>';
+                        break;
+                    case 'christoffel':
+                        details.innerHTML = '<p>Cálculo de símbolos de Christoffel Γ<sup>k</sup><sub>ij</sub> = ½ G<sup>kl</sup>(∂<sub>i</sub>G<sub>jl</sub> + ∂<sub>j</sub>G<sub>il</sub> - ∂<sub>l</sub>G<sub>ij</sub>) a partir del hessiano y sus derivadas numéricas.</p>';
+                        break;
+                    case 'ricci':
+                        details.innerHTML = '<p>Construcción del tensor de Ricci R<sub>ij</sub> = R<sup>k</sup><sub>ikj</sub> y cálculo del escalar de curvatura R = G<sup>ij</sup>R<sub>ij</sub> para análisis de estabilidad PCE.</p>';
+                        break;
+                }
+            });
+        });
+        
+        // Simular visualizaciones con animaciones simples
+        document.querySelectorAll('.chart-placeholder').forEach(chart => {
+            chart.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#95a5a6;font-style:italic;">[Visualización Interactiva - ' + 
+                            chart.parentElement.querySelector('h4').textContent + ']</div>';
+        });
+    </script>
+</body>
+</html>
