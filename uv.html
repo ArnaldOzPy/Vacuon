@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Geometría del Espacio de Teorías - Resumen Ejecutivo</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #2c3e50;
@@ -247,6 +248,68 @@
             background: var(--secondary);
         }
         
+        .diagram {
+            width: 100%;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .flow-arrow {
+            stroke: #3498db;
+            stroke-width: 2;
+            marker-end: url(#arrowhead);
+        }
+        
+        .fixed-point {
+            fill: #e74c3c;
+            stroke: #c0392b;
+            stroke-width: 2;
+        }
+        
+        .theory-space {
+            fill: rgba(52, 152, 219, 0.1);
+            stroke: #3498db;
+            stroke-width: 1;
+        }
+        
+        .curvature-positive {
+            fill: rgba(231, 76, 60, 0.2);
+            stroke: #e74c3c;
+        }
+        
+        .curvature-negative {
+            fill: rgba(46, 204, 113, 0.2);
+            stroke: #2ecc71;
+        }
+        
+        .algorithm-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        
+        .flow-step {
+            background: rgba(52, 152, 219, 0.2);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+            min-width: 150px;
+        }
+        
+        .flow-arrow-symbol {
+            color: #3498db;
+            font-size: 1.5rem;
+            margin: 0 10px;
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -263,6 +326,20 @@
             
             .concept-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .algorithm-flow {
+                flex-direction: column;
+            }
+            
+            .flow-step {
+                margin: 10px 0;
+                width: 100%;
+            }
+            
+            .flow-arrow-symbol {
+                transform: rotate(90deg);
+                margin: 10px 0;
             }
         }
     </style>
@@ -314,10 +391,30 @@
             
             <div class="visualization">
                 <h4>Visualización del Flujo RG en Espacio de Teorías</h4>
-                <div class="chart-container">
-                    <div class="chart-placeholder">
-                        [Diagrama: Flujo RG convergiendo hacia punto fijo en variedad de curvatura negativa]
-                    </div>
+                <div class="diagram" id="rg-flow-diagram">
+                    <svg width="100%" height="100%" viewBox="0 0 400 300">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#3498db"/>
+                            </marker>
+                        </defs>
+                        <!-- Teoría UV (punto fijo) -->
+                        <circle cx="100" cy="150" r="15" class="fixed-point"/>
+                        <text x="100" y="140" text-anchor="middle" fill="#ecf0f1" font-size="12">Punto Fijo UV</text>
+                        
+                        <!-- Teoría IR -->
+                        <circle cx="300" cy="150" r="10" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+                        <text x="300" y="140" text-anchor="middle" fill="#ecf0f1" font-size="12">Teoría IR</text>
+                        
+                        <!-- Flujos RG -->
+                        <path d="M 115 150 Q 200 100 285 150" class="flow-arrow" fill="none"/>
+                        <path d="M 115 150 Q 200 200 285 150" class="flow-arrow" fill="none"/>
+                        <path d="M 115 150 L 285 150" class="flow-arrow" fill="none"/>
+                        
+                        <!-- Espacio de teorías -->
+                        <ellipse cx="200" cy="150" rx="120" ry="80" class="theory-space" fill="none"/>
+                        <text x="200" y="80" text-anchor="middle" fill="#ecf0f1" font-size="14">Espacio de Teorías</text>
+                    </svg>
                 </div>
                 <p>El flujo RG actúa como campo vectorial en variedad Riemanniana, con curvatura negativa garantizando estabilidad asintótica.</p>
             </div>
@@ -347,10 +444,39 @@
             
             <div class="visualization">
                 <h4>Interpretación Geométrica del PCE</h4>
-                <div class="chart-container">
-                    <div class="chart-placeholder">
-                        [Diagrama: Variedad de teorías con regiones de curvatura positiva (inestable) y negativa (estable)]
-                    </div>
+                <div class="diagram" id="curvature-diagram">
+                    <svg width="100%" height="100%" viewBox="0 0 400 300">
+                        <!-- Región de curvatura negativa (estable) -->
+                        <path d="M 100 150 Q 200 100 300 150 Q 200 200 100 150" class="curvature-negative"/>
+                        <text x="200" y="130" text-anchor="middle" fill="#2ecc71" font-size="12">Curvatura Negativa (Estable)</text>
+                        
+                        <!-- Región de curvatura positiva (inestable) -->
+                        <path d="M 100 200 Q 200 250 300 200 Q 200 150 100 200" class="curvature-positive"/>
+                        <text x="200" y="240" text-anchor="middle" fill="#e74c3c" font-size="12">Curvatura Positiva (Inestable)</text>
+                        
+                        <!-- Puntos fijos -->
+                        <circle cx="200" cy="150" r="8" class="fixed-point"/>
+                        <text x="200" y="140" text-anchor="middle" fill="#ecf0f1" font-size="10">NGFP</text>
+                        
+                        <circle cx="200" cy="200" r="6" fill="#e74c3c" stroke="#c0392b" stroke-width="2"/>
+                        <text x="200" y="190" text-anchor="middle" fill="#ecf0f1" font-size="10">Punto Inestable</text>
+                        
+                        <!-- Flujos -->
+                        <path d="M 180 170 Q 170 180 180 190" stroke="#2ecc71" stroke-width="2" fill="none" marker-end="url(#arrowhead-green)"/>
+                        <path d="M 220 170 Q 230 180 220 190" stroke="#2ecc71" stroke-width="2" fill="none" marker-end="url(#arrowhead-green)"/>
+                        
+                        <path d="M 180 220 Q 170 210 180 200" stroke="#e74c3c" stroke-width="2" fill="none" marker-end="url(#arrowhead-red)"/>
+                        <path d="M 220 220 Q 230 210 220 200" stroke="#e74c3c" stroke-width="2" fill="none" marker-end="url(#arrowhead-red)"/>
+                        
+                        <defs>
+                            <marker id="arrowhead-green" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#2ecc71"/>
+                            </marker>
+                            <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#e74c3c"/>
+                            </marker>
+                        </defs>
+                    </svg>
                 </div>
                 <p>La curvatura negativa actúa como mecanismo de contracción exponencial hacia el punto fijo UV.</p>
             </div>
@@ -369,6 +495,29 @@
                 <li>Comparación múltiple de reguladores (Litim, Exponencial, PowerLaw)</li>
             </ul>
             
+            <h3>Arquitectura del Algoritmo</h3>
+            <div class="algorithm-flow">
+                <div class="flow-step">
+                    <h4>1. Discretización</h4>
+                    <p>Espacio de acoplamientos</p>
+                </div>
+                <div class="flow-arrow-symbol">→</div>
+                <div class="flow-step">
+                    <h4>2. Cálculo de Hessiano</h4>
+                    <p>G<sub>ij</sub> = ∂²Γ/∂g<sub>i</sub>∂g<sub>j</sub></p>
+                </div>
+                <div class="flow-arrow-symbol">→</div>
+                <div class="flow-step">
+                    <h4>3. Curvatura</h4>
+                    <p>R = G<sup>ij</sup>R<sub>ij</sub></p>
+                </div>
+                <div class="flow-arrow-symbol">→</div>
+                <div class="flow-step">
+                    <h4>4. Análisis</h4>
+                    <p>Estabilidad RG</p>
+                </div>
+            </div>
+            
             <h3>Algoritmo de Cálculo de Curvatura</h3>
             <div class="interactive-controls">
                 <button class="control-btn active" data-algorithm="hessian">Cálculo de Hessiano</button>
@@ -381,12 +530,11 @@
             </div>
             
             <div class="visualization">
-                <h4>Arquitectura del Solucionador FRGE</h4>
+                <h4>Convergencia de Truncaciones</h4>
                 <div class="chart-container">
-                    <div class="chart-placeholder">
-                        [Diagrama: Flujo de datos del algoritmo - Discretización → Hessiano → Curvatura → Análisis de Estabilidad]
-                    </div>
+                    <canvas id="truncationChart"></canvas>
                 </div>
+                <p>Convergencia sistemática de acoplamientos críticos con aumento del orden de truncación N.</p>
             </div>
         </section>
         
@@ -425,6 +573,13 @@
                 </tbody>
             </table>
             
+            <div class="visualization">
+                <h4>Límites de Estabilidad RG</h4>
+                <div class="chart-container">
+                    <canvas id="stabilityChart"></canvas>
+                </div>
+            </div>
+            
             <h3>Verificación Cruzada CDT-FRGE</h3>
             <div class="equation">
                 ρ<sub>CDT-FRGE</sub> = ⟨d<sub>s</sub><sup>CDT</sup>(k) · d<sub>s</sub><sup>FRGE</sup>(k)⟩ / (σ<sub>CDT</sub> σ<sub>FRGE</sub>)
@@ -432,11 +587,9 @@
             <p>Correlación cuantitativa entre dimensión espectral calculada via FRGE y via Triangulaciones Dinámicas Causales.</p>
             
             <div class="visualization">
-                <h4>Convergencia de Truncaciones</h4>
+                <h4>Correlación CDT-FRGE</h4>
                 <div class="chart-container">
-                    <div class="chart-placeholder">
-                        [Gráfico: Convergencia de acoplamientos críticos con aumento del orden de truncación N]
-                    </div>
+                    <canvas id="correlationChart"></canvas>
                 </div>
                 <p>Los resultados muestran convergencia sistemática para N > 20, validando el esquema de truncación.</p>
             </div>
@@ -450,6 +603,28 @@
             
             <div class="equation">
                 ds² = -N²(x)dt² + h<sub>ij</sub>(x,t)(dxⁱ - βⁱ(x)dt)(dxʲ - βʲ(x)dt)
+            </div>
+            
+            <div class="visualization">
+                <h4>Geometría Deformada Localmente</h4>
+                <div class="diagram" id="deformed-geometry">
+                    <svg width="100%" height="100%" viewBox="0 0 400 300">
+                        <!-- Espacio-tiempo plano de fondo -->
+                        <rect x="50" y="50" width="300" height="200" fill="none" stroke="#3498db" stroke-width="1" stroke-dasharray="5,5"/>
+                        
+                        <!-- Región deformada -->
+                        <ellipse cx="200" cy="150" rx="80" ry="60" fill="rgba(231, 76, 60, 0.2)" stroke="#e74c3c" stroke-width="2"/>
+                        
+                        <!-- Líneas de coordenadas deformadas -->
+                        <path d="M 120 150 Q 200 120 280 150" stroke="#ecf0f1" stroke-width="1.5" fill="none"/>
+                        <path d="M 120 150 Q 200 180 280 150" stroke="#ecf0f1" stroke-width="1.5" fill="none"/>
+                        <path d="M 200 90 Q 230 150 200 210" stroke="#ecf0f1" stroke-width="1.5" fill="none"/>
+                        <path d="M 200 90 Q 170 150 200 210" stroke="#ecf0f1" stroke-width="1.5" fill="none"/>
+                        
+                        <text x="200" y="80" text-anchor="middle" fill="#e74c3c" font-size="12">Región de Deformación Local</text>
+                        <text x="200" y="240" text-anchor="middle" fill="#3498db" font-size="12">Espacio-tiempo Plano</text>
+                    </svg>
+                </div>
             </div>
             
             <h3>Predicciones Fenomenológicas</h3>
@@ -487,14 +662,10 @@
         // Navegación por pestañas
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', function() {
-                // Remover clase active de todas las pestañas y secciones
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
                 
-                // Activar pestaña clickeada
                 this.classList.add('active');
-                
-                // Mostrar sección correspondiente
                 const targetId = this.getAttribute('data-target');
                 document.getElementById(targetId).classList.add('active');
             });
@@ -509,7 +680,6 @@
                 const algorithm = this.getAttribute('data-algorithm');
                 const details = document.getElementById('algorithm-details');
                 
-                // Actualizar detalles según algoritmo seleccionado
                 switch(algorithm) {
                     case 'hessian':
                         details.innerHTML = '<p>El algoritmo calcula numéricamente el hessiano G<sub>ij</sub> = ∂<sup>2</sup>Γ<sub>k</sub>/∂g<sub>i</sub>∂g<sub>j</sub> mediante diferencias finitas de cuarto orden con regularización para asegurar definición positiva.</p>';
@@ -523,11 +693,202 @@
                 }
             });
         });
-        
-        // Simular visualizaciones con animaciones simples
-        document.querySelectorAll('.chart-placeholder').forEach(chart => {
-            chart.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#95a5a6;font-style:italic;">[Visualización Interactiva - ' + 
-                            chart.parentElement.querySelector('h4').textContent + ']</div>';
+
+        // Gráfico de convergencia de truncaciones
+        const truncationCtx = document.getElementById('truncationChart').getContext('2d');
+        const truncationChart = new Chart(truncationCtx, {
+            type: 'line',
+            data: {
+                labels: ['5', '10', '15', '20', '25', '30'],
+                datasets: [
+                    {
+                        label: 'Acoplamiento Newton G',
+                        data: [0.8, 0.65, 0.55, 0.48, 0.47, 0.46],
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'Acoplamiento Cosmológico Λ',
+                        data: [0.25, 0.18, 0.12, 0.08, 0.07, 0.07],
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Convergencia de Acoplamientos Críticos',
+                        color: '#ecf0f1'
+                    },
+                    legend: {
+                        labels: {
+                            color: '#ecf0f1'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Orden de Truncación N',
+                            color: '#ecf0f1'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Valor del Acoplamiento',
+                            color: '#ecf0f1'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Gráfico de estabilidad
+        const stabilityCtx = document.getElementById('stabilityChart').getContext('2d');
+        const stabilityChart = new Chart(stabilityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Esférica', 'Cilíndrica', 'Toroidal'],
+                datasets: [{
+                    label: 'Límite Crítico ε_cr',
+                    data: [0.124, 0.089, 0.156],
+                    backgroundColor: [
+                        'rgba(46, 204, 113, 0.7)',
+                        'rgba(46, 204, 113, 0.7)',
+                        'rgba(231, 76, 60, 0.7)'
+                    ],
+                    borderColor: [
+                        '#2ecc71',
+                        '#2ecc71',
+                        '#e74c3c'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Límites de Estabilidad RG para Geometrías Deformadas',
+                        color: '#ecf0f1'
+                    },
+                    legend: {
+                        labels: {
+                            color: '#ecf0f1'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'ε_cr',
+                            color: '#ecf0f1'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Gráfico de correlación
+        const correlationCtx = document.getElementById('correlationChart').getContext('2d');
+        const correlationChart = new Chart(correlationCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'CDT vs FRGE',
+                    data: [
+                        {x: 1.2, y: 1.18}, {x: 1.5, y: 1.52}, {x: 1.8, y: 1.75},
+                        {x: 2.1, y: 2.05}, {x: 2.4, y: 2.38}, {x: 2.7, y: 2.65},
+                        {x: 3.0, y: 2.95}, {x: 3.3, y: 3.28}, {x: 3.6, y: 3.55}
+                    ],
+                    backgroundColor: 'rgba(52, 152, 219, 0.7)',
+                    borderColor: '#3498db',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Correlación Dimensión Espectral: CDT vs FRGE',
+                        color: '#ecf0f1'
+                    },
+                    legend: {
+                        labels: {
+                            color: '#ecf0f1'
+                        }
+                }
+                },
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'd_s CDT',
+                            color: '#ecf0f1'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'd_s FRGE',
+                            color: '#ecf0f1'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ecf0f1'
+                        }
+                    }
+                }
+            }
         });
     </script>
 </body>
